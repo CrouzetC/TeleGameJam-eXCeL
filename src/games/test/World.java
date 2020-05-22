@@ -1,7 +1,9 @@
 package games.test;
 
+import games.test.week.ActionMenu;
 import games.test.week.Week;
 import games.test.week.actions.Action;
+import games.test.week.actions.Sleep;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -11,19 +13,27 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class World extends BasicGameState {
+
 	// basic
 	private int ID;
 	private int state;
+
 	// game
 	private Week week;
 	private int gameState; // 0 : menu initial ; 1 : ActionMenu ; 2 : action
+	ActionMenu actionMenu;
 	Action currentAction;
 
 	public World(int ID) {
+		// basic
 		this.ID = ID;
 		this.state = 0;
-		// week
+		// game
+		gameState = 2;
+		actionMenu = new ActionMenu();
 		week = new Week();
+		currentAction = null;
+		currentAction = new Sleep();
 	}
 
 	@Override
@@ -53,7 +63,7 @@ public class World extends BasicGameState {
 			this.pause(container, game);
 		} else if (this.state == 3) {
 			this.stop(container, game);
-			this.state = 0; // TODO: remove
+			this.state = 0;
 		}
 	}
 
@@ -61,25 +71,103 @@ public class World extends BasicGameState {
 	public void update(GameContainer container, StateBasedGame game, int delta) {
 		/* Méthode exécutée environ 60 fois par seconde */
 		Input input = container.getInput();
+
+		// leaving game
 		if (input.isKeyDown(Input.KEY_ESCAPE)) {
 			this.setState(1);
 			game.enterState(2, new FadeOutTransition(), new FadeInTransition());
+		}
+
+		// other updates (required for animations)
+
+		switch (gameState) {
+			case 0:
+				break;
+
+			case 1:
+				break;
+
+			case 2:
+				currentAction.update(container, game, delta);
+				break;
+
+			default:
+				System.out.println("Error in World.update()");
 		}
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics context) {
 		/* Méthode exécutée environ 60 fois par seconde */
+
+		switch (gameState) {
+			case 0:
+				break;
+
+			case 1:
+				break;
+
+			case 2:
+				currentAction.render(container, game, context);
+				break;
+
+			default:
+				System.out.println("Error in World.render()");
+		}
+
 	}
 
 	@Override
 	public void keyPressed(int key, char c) {
+		/* Méthode exécutée environ 60 fois par seconde */
+
+		switch (gameState) {
+			case 0:
+				break;
+
+			case 1:
+				break;
+
+			case 2:
+				currentAction.keyPressed(key,c);
+				checkEndOfAction();
+				break;
+
+			default:
+				System.out.println("Error in World.keyPressed()");
+		}
 
 	}
 
 	@Override
 	public void mousePressed(int button, int x, int y) {
 
+		switch (gameState) {
+			case 0:
+				break;
+
+			case 1:
+				break;
+
+			case 2:
+				currentAction.mousePressed(button, x, y);
+				checkEndOfAction();
+				break;
+
+			default:
+				System.out.println("Error in World.mousePressed()");
+		}
+
+	}
+
+	public void checkEndOfAction() {
+		if (currentAction.isOver()) {
+
+			// action suivante, ou fin de la semaine
+			//TODO
+			System.out.println("Action terminée !");
+
+		}
 	}
 
 	public void play(GameContainer container, StateBasedGame game) {

@@ -1,5 +1,5 @@
 Projects
-PIDR,
+PIDR,SFA,[longueur du projet],[compétances requises]
 
 
 Actions

@@ -1,14 +1,13 @@
 package games.test.week.actions;
 
-import java.awt.*;
-import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.TrueTypeFont;
+import java.awt.Font;
+
+import org.newdawn.slick.*;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.StateBasedGame;
 
 
-public class Sleep {
+public class Sleep implements Action {
 
     Font awtFont;
     TrueTypeFont font;
@@ -42,4 +41,5 @@ public class Sleep {
     public boolean isOver() {
         return isOver;
     }
+
 }
