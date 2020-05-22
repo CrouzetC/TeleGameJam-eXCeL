@@ -1,8 +1,9 @@
 package games.test;
 
+import games.test.data.GameData;
 import games.test.week.ActionMenu;
 import games.test.week.Week;
-import games.test.week.actions.Action;
+import games.test.week.actions.ActionEvent;
 import games.test.week.actions.Sleep;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -21,12 +22,17 @@ public class World extends BasicGameState {
 	private int state;
 
 	// game
+	private int gameState; // 0 : menu initial ; 1 : ActionMenu ; 2 : action
+	private GameData data;
+	ActionMenu actionMenu;
+
+	// weeks
 	private static int nbWeeks = 10;
+	private static int nbActions = 6;
+	private static int nbEvents = 1;
 	private ArrayList<Week> weeks;
 	int currentWeek;
-	private int gameState; // 0 : menu initial ; 1 : ActionMenu ; 2 : action
-	ActionMenu actionMenu;
-	Action currentAction;
+	ActionEvent currentAction;
 
 	public World(int ID) {
 
@@ -36,7 +42,8 @@ public class World extends BasicGameState {
 
 		// game
 		gameState = 2;
-		actionMenu = new ActionMenu();
+		data = new GameData("some file");
+		actionMenu = new ActionMenu(data);
 
 		// week
 		weeks = new ArrayList<Week>();
@@ -50,6 +57,10 @@ public class World extends BasicGameState {
 	}
 
 	public void newWeek() {
+
+	}
+
+	public void endWeek() {
 
 	}
 
@@ -181,9 +192,20 @@ public class World extends BasicGameState {
 		if (currentAction.isOver()) {
 
 			// action suivante, ou fin de la semaine
-			//TODO
-			System.out.println("Action terminée !");
+			currentAction = weeks.get(currentWeek).getNextAction();
+			if (currentAction != null) {
 
+				// action suivante
+				System.out.println("Action suivante !");
+
+			}
+			else {
+
+				// fin de la semaine
+				endWeek();
+				System.out.println("Fin de la semaine !");
+
+			}
 		}
 	}
 

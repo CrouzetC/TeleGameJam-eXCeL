@@ -7,7 +7,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
-public interface Action {
+public interface ActionEvent {
 
     public void update(GameContainer container, StateBasedGame game, int delta);
 

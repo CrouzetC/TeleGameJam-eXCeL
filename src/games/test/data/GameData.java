@@ -1,15 +1,14 @@
 package games.test.data;
 
 import games.test.week.Week;
-import games.test.week.actions.Action;
+import games.test.week.actions.ActionEvent;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class GameData {
 
     ArrayList<Project> allProjects;
-    ArrayList<Action> allActions;
+    ArrayList<ActionEvent> allActions;
     ArrayList<UE> allUE;
     Player player;
     ArrayList<Week> weeks;
@@ -35,7 +34,7 @@ public class GameData {
         Loader.loadProjects(allProjects, dataFileName);
 
         // All possible Actions
-        allActions = new ArrayList<Action>();
+        allActions = new ArrayList<ActionEvent>();
         Loader.loadActions(allActions, dataFileName);
 
     }
