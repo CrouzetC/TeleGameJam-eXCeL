@@ -5,6 +5,11 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Dialogue implements Action {
+    boolean isOver;
+
+    public Dialogue() {
+
+    }
 
     public void update(GameContainer container, StateBasedGame game, int delta) {
 
@@ -22,4 +27,7 @@ public class Dialogue implements Action {
 
     }
 
+    public boolean isOver() {
+        return isOver;
+    }
 }

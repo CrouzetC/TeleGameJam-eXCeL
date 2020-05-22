@@ -17,4 +17,6 @@ public interface Action {
 
     public void mousePressed(int button, int x, int y);
 
+    boolean isOver(); // pour savoir si une action est terminée
+
 }

@@ -13,12 +13,9 @@ public class Week {
 
     }
 
-    public setActions
+    public void initWeek() {
 
-
-
-
-
+    }
 
 
 
