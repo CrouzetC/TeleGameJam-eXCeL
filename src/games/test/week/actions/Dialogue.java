@@ -79,13 +79,13 @@ public class Dialogue implements ActionEvent {
             // réplique du joueur
 
             // indication de la réplique actuellement sélectionnée
-            font.drawString(10, 20, ">>", org.newdawn.slick.Color.red);
+            font.drawString(10, 20 + selectedLine*20, ">>", org.newdawn.slick.Color.red);
 
             // affichage des différentes répliques possibles
             int nbChoices = ((Choices)dialoguePiece).getNbChoices();
             for (int i = 0; i < nbChoices; i++) {
                 Choice choice = ((Choices)dialoguePiece).getChoice(i);
-                font.drawString(20, 20 + i*20, choice.getText(), org.newdawn.slick.Color.red);
+                font.drawString(30, 20 + i*20, choice.getText(), org.newdawn.slick.Color.red);
             }
         }
 
@@ -102,7 +102,6 @@ public class Dialogue implements ActionEvent {
                     selectedLine = 0;
 
             } else if (dialoguePieces.get(current_piece) instanceof Choices) {
-
                 Choice choice = ((Choices) dialoguePieces.get(current_piece)).getChoice(selectedLine);
 
                 // déclenchement de l'action associée au choix
@@ -161,11 +160,12 @@ public class Dialogue implements ActionEvent {
         choiceA.addFollowingDialoguePiece(new Line("Maria","See you !"));
 
         Choice choiceB = new Choice("Better than Thomas Ahah");
-        choiceB.addFollowingDialoguePiece(new Line("John","coool"));
-        choiceB.addFollowingDialoguePiece(new Line("Maria","See you !"));
+        choiceB.addFollowingDialoguePiece(new Line("John","lmaooo"));
+        choiceB.addFollowingDialoguePiece(new Line("Maria","omg"));
 
         choices.addChoice(choiceA);
         choices.addChoice(choiceB);
+        d.add(choices);
 
         d.add(new Line("John","Let's go back to work now"));
         d.add(new Line("Maria","Yes"));

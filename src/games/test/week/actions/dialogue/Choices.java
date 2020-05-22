@@ -7,6 +7,7 @@ public class Choices implements DialoguePiece {
     private ArrayList<Choice> choices;
 
     public Choices() {
+        choices = new ArrayList<Choice>();
     }
 
     public void addChoice(Choice c) {
