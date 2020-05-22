@@ -1,5 +1,6 @@
 package games.test;
 
+import games.test.week.Week;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -12,10 +13,13 @@ public class World extends BasicGameState {
 
 	private int ID;
 	private int state;
+	private Week week;
 
 	public World(int ID) {
 		this.ID = ID;
 		this.state = 0;
+		// week
+		week = new Week();
 	}
 
 	@Override
