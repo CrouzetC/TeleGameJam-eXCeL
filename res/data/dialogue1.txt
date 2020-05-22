@@ -1,19 +1,26 @@
-[nom de l'interlocuteur (MC si perso principal)],"[phrase prononcée]"
-[interlocuteur],"[phrase]"
-[interlocuteur],"[phrase]"
-[interlocuteur],"[phrase]"
+"[nom de l'interlocuteur (MC si perso principal)]"
+"[phrase prononcée]"
+"[interlocuteur]"
+"[phrase]"
+"[interlocuteur]"
+"[phrase]"
+"[interlocuteur]"
+"[phrase]"
 CHOICE,[nombre de phrases],"[phrase A]","[phrase B]","[phrase C]"
 A,[modification des stats et de l'avancement d'un projet]
-A,[interlocuteur],"[phrase]"
-A,[interlocuteur],"[phrase]"
+"[interlocuteur]"
+"[phrase]"
+"[interlocuteur]"
+"[phrase]"
 B,[modification des stats et de l'avancement d'un projet]
-B,[interlocuteur],"[phrase]"
-B,[interlocuteur],"[phrase]"
+"[interlocuteur]"
+"[phrase]"
+"[interlocuteur]"
+"[phrase]"
 C,[modification des stats et de l'avancement d'un projet]
-C,[interlocuteur],"[phrase]"
-C,[interlocuteur],"[phrase]"
-C,[interlocuteur],"[phrase]"
-CHOICE_END
+"[interlocuteur]"
+"[phrase]"
+END
 [interlocuteur],"[phrase]"
 [interlocuteur],"[phrase]"
 CHOICE,[nombre de phrases],"[phrase A]","[phrase B]","[phrase C]"
@@ -21,7 +28,7 @@ A,[modification des stats et de l'avancement d'un projet]
 A,[interlocuteur],"[phrase]"
 B,[modification des stats et de l'avancement d'un projet]
 B,[interlocuteur],"[phrase]"
-CHOICE_END
+END
 [interlocuteur],"[phrase]"
 [interlocuteur],"[phrase]"
 END
