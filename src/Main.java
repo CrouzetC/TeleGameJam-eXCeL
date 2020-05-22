@@ -24,7 +24,7 @@ public final class Main {
 			"Non"
 		};
 		JFrame frame = new JFrame();
-		frame.setIconImage(AppLoader.loadIcon("/images/icon.png").getImage());
+		frame.setIconImage(AppLoader.loadIcon("/images/tgj_icon.png").getImage());
 		int returnValue = JOptionPane.showOptionDialog(
 			frame,
 			request,
@@ -53,6 +53,7 @@ public final class Main {
 				this.addState(new pages.Choice(1));
 				this.addState(new pages.Pause(2));
 				this.addState(new games.test.World(3));
+				this.addState(new pages.NewGame(4));
 			}
 
 		};
@@ -60,7 +61,7 @@ public final class Main {
 		container.setTargetFrameRate(60);
 		container.setVSync(true);
 		container.setShowFPS(false);
-		container.setIcon(AppLoader.resolve("/images/icon.png"));
+		container.setIcon(AppLoader.resolve("/images/tgj_icon.png"));
 		container.start();
 	}
 

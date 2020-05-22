@@ -59,7 +59,7 @@ public class Welcome extends AppPage {
 		this.hintBlink = true;
 
 		this.setHint("PRESS [START]");
-		this.setLogo(AppLoader.loadPicture("/images/logo.png"));
+		this.setLogo(AppLoader.loadPicture("/images/tgj.png"));
 	}
 
 	@Override

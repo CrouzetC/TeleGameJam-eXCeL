@@ -96,6 +96,9 @@ public class Dialogue implements ActionEvent {
         if (dialoguePiece instanceof Choices) {
             // réplique du joueur
 
+            // nom du joueur
+            font.drawString(30,  (int)(0.825*height), gameData.getPlayer().getName(), org.newdawn.slick.Color.red);
+
             // indication de la réplique actuellement sélectionnée
             font.drawString(30,  (int)(0.875*height) + selectedLine*20, ">>", org.newdawn.slick.Color.red);
 

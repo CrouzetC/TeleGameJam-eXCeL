@@ -3,7 +3,10 @@ package pages;
 import java.util.Arrays;
 
 import org.newdawn.slick.Color;
+import games.test.data.Player;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
@@ -31,15 +34,33 @@ public class NewGame extends AppMenu {
 				this.contentX, this.subtitleBoxY + this.subtitleBoxHeight + AppPage.gap,
 				this.contentWidth, this.subtitleBoxHeight);
 		
-		this.setMenu(Arrays.asList(new MenuItem[] {
+		/*this.setMenu(Arrays.asList(new MenuItem[] {
 				new MenuItem("Confirmer") {
 					public void itemSelected() {
 						game.enterState(2, new FadeOutTransition(), new FadeInTransition(Color.black, Welcome.fadeTransitionTime));
 					}
 				}
-			}));
+			}));*/
 		
-		this.setHint("Ce choix sera définitif. Il ne vous sera pas possible de le modifier plus tard.");
+		this.setHint("Ce choix sera définitif !");
 	}
-	
+
+	@Override
+	public void update(GameContainer container, StateBasedGame game, int  delta) {
+		super.update(container, game, delta);
+		Input input = container.getInput();
+		if (input.isKeyDown(Input.KEY_ESCAPE)) {
+			game.enterState(1, new FadeOutTransition(), new FadeInTransition());
+		} else if (input.isKeyDown(Input.KEY_ENTER)) {
+			Player.name = this.tf.getText();
+			game.enterState(3, new FadeOutTransition(), new FadeInTransition());
+		}
+	}
+
+	@Override
+	public void render(GameContainer container, StateBasedGame game, Graphics context) {
+		super.render(container, game, context);
+		this.tf.render(container, game, context);
+	}
+
 }

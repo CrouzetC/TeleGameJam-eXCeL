@@ -1,7 +1,7 @@
 package games.test.data;
 
 public class Player {
-    String name;
+    public static String name;
 
     public static int nb_stats = 6;
     private int[] statistics;
