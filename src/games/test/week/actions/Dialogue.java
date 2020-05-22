@@ -4,7 +4,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class Dialogue extends Action {
+public class Dialogue implements Action {
+
     boolean isOver;
 
     public Dialogue() {

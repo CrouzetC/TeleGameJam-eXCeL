@@ -12,6 +12,8 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
+import java.util.ArrayList;
+
 public class World extends BasicGameState {
 
 	// basic
@@ -19,21 +21,36 @@ public class World extends BasicGameState {
 	private int state;
 
 	// game
-	private Week week;
+	private static int nbWeeks = 10;
+	private ArrayList<Week> weeks;
+	int currentWeek;
 	private int gameState; // 0 : menu initial ; 1 : ActionMenu ; 2 : action
 	ActionMenu actionMenu;
 	Action currentAction;
 
 	public World(int ID) {
+
 		// basic
 		this.ID = ID;
 		this.state = 0;
+
 		// game
 		gameState = 2;
 		actionMenu = new ActionMenu();
-		week = new Week();
+
+		// week
+		weeks = new ArrayList<Week>();
+		for (int i = 0; i < nbWeeks; i++)
+			weeks.add(new Week());
 		currentAction = null;
 		currentAction = new Sleep();
+
+		// start a new week
+		newWeek();
+	}
+
+	public void newWeek() {
+
 	}
 
 	@Override

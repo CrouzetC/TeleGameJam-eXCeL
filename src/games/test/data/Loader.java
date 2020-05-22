@@ -18,9 +18,6 @@ public class Loader {
 
         for (int i = 0; i < nb_weeks; i++) {
 
-            // 1 jour :
-            Sleep s = new Sleep();
-
 
         }
 
