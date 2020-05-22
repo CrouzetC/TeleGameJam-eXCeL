@@ -1,0 +1,8 @@
+Projects
+PIDR,SFA,[longueur du projet],[compétances requises]
+
+
+Actions
+[id (>=1)],[id de l'action précédente requise (0 si pas de dépendance)],[nom de l'action (ex : réunion pour la grammaire de compil)]
+[id (>=1)],[id de l'action précédente requise (0 si pas de dépendance)],[nom de l'action]
+[id (>=1)],[id de l'action précédente requise (0 si pas de dépendance)],[nom de l'action]

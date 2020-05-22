@@ -1,19 +1,14 @@
-package games.test.week;
+package games.test.week.actions;
 
-import games.test.data.GameData;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class ActionMenu {
+public class Dialogue implements Action {
 
-    private GameData data;
+    boolean isOver;
 
-    public ActionMenu(GameData data) {
-
-    }
-
-    public void init() {
+    public Dialogue() {
 
     }
 
@@ -33,4 +28,7 @@ public class ActionMenu {
 
     }
 
+    public boolean isOver() {
+        return isOver;
+    }
 }
