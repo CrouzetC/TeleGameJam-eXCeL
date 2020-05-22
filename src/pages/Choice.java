@@ -20,10 +20,10 @@ public class Choice extends AppMenu {
 	public void init(GameContainer container, StateBasedGame game) {
 		super.initSize(container, game, 600, 400);
 		super.init(container, game);
-		this.setTitle("Choix");
-		this.setSubtitle("Sans sous-titre");
+		this.setTitle("TeleGame Jam");
+		this.setSubtitle("eXCeL");
 		this.setMenu(Arrays.asList(new MenuItem[] {
-			new MenuItem("Test") {
+			new MenuItem("Nouvelle partie") {
 				public void itemSelected() {
 					game.enterState(3, new FadeOutTransition(), new FadeInTransition());
 				}
@@ -34,7 +34,7 @@ public class Choice extends AppMenu {
 				}
 			}
 		}));
-		this.setHint("SELECT A GAME");
+		this.setHint("Choisissez un mode de jeu.");
 	}
 
 }
