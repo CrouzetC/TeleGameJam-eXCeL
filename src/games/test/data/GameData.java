@@ -13,6 +13,7 @@ public class GameData {
     private Player player;
     private ArrayList<Week> weeks;
     private NPCs characters;
+    private Pictures pictures;
 
     public GameData(String dataFileName) {
 
@@ -22,10 +23,11 @@ public class GameData {
         allUE.add(new UE("STIC"));
         allUE.add(new UE("SEHS"));
 
-        //  Player and NPCs
+        //  Player NPCs and pictures
         player = new Player();
         characters = new NPCs();
         Loader.loadNPCs(characters);
+        pictures = new Pictures();
 
         // We create the Weeks
         weeks = new ArrayList<Week>();
@@ -38,7 +40,7 @@ public class GameData {
 
         // All possible Actions
         allActions = new ArrayList<ActionEvent>();
-        Loader.loadActions(allActions, dataFileName);
+        Loader.loadActions(allActions, this, dataFileName);
 
     }
 
@@ -60,5 +62,6 @@ public class GameData {
     public NPCs getCharacters() {
         return this.characters;
     }
+    public Pictures getPictures() {return this.pictures;}
 
 }

@@ -2,6 +2,7 @@ package pages;
 
 import java.util.Arrays;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
@@ -25,12 +26,12 @@ public class Choice extends AppMenu {
 		this.setMenu(Arrays.asList(new MenuItem[] {
 			new MenuItem("Nouvelle partie") {
 				public void itemSelected() {
-					game.enterState(3, new FadeOutTransition(), new FadeInTransition());
+					game.enterState(3, new FadeOutTransition(Color.black,Welcome.fadeTransitionTime), new FadeInTransition(Color.black,Welcome.fadeTransitionTime));
 				}
 			},
 			new MenuItem("Retour") {
 				public void itemSelected() {
-					game.enterState(0, new FadeOutTransition(), new FadeInTransition());
+					game.enterState(0, new FadeOutTransition(Color.black,Welcome.fadeTransitionTime), new FadeInTransition(Color.black,Welcome.fadeTransitionTime));
 				}
 			}
 		}));

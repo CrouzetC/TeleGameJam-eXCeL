@@ -44,7 +44,7 @@ public class World extends BasicGameState {
 		this.state = 0;
 
 		// game
-		gameState = 3;
+		gameState = 2;
 		data = new GameData("some file");
 		actionMenu = new ActionMenu(data);
 
@@ -53,8 +53,7 @@ public class World extends BasicGameState {
 		for (int i = 0; i < nbWeeks; i++)
 			weeks.add(new Week());
 		currentAction = null;
-		currentAction = Dialogue.getDialogueDemo();
-
+		currentAction = new Dialogue(data, "res/data/dialogue1.txt");
 
 		// start a new week
 		newWeek();

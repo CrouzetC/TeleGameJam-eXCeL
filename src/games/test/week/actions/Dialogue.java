@@ -1,22 +1,21 @@
 package games.test.week.actions;
 
+import games.test.data.GameData;
 import games.test.data.Loader;
 import games.test.week.actions.dialogue.Choice;
 import games.test.week.actions.dialogue.Choices;
 import games.test.week.actions.dialogue.DialoguePiece;
 import games.test.week.actions.dialogue.Line;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Input;
-import org.newdawn.slick.TrueTypeFont;
+import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
 
-import java.awt.*;
+import java.awt.Font;
 import java.util.ArrayList;
 
 public class Dialogue implements ActionEvent {
 
     // font
+    GameData gameData;
     Font awtFont;
     TrueTypeFont font;
 
@@ -28,17 +27,18 @@ public class Dialogue implements ActionEvent {
     int current_piece;
     int selectedLine; // pour savoir quelle est la réplique sélectionnée par le joueur
 
-    public Dialogue(String filename) {
+    public Dialogue(GameData gameData, String filename) {
 
         // font
         awtFont = new Font("vt323", java.awt.Font.BOLD, 12);
         font = new TrueTypeFont(awtFont, true);
-        isOver = false;
 
         // loading data
+        this.gameData = gameData;
         dialoguePieces = new ArrayList<DialoguePiece>();
         Loader.loadDialogue(this, filename);
         current_piece = 0;
+        isOver = false;
     }
 
     public Dialogue() {  // uniquement pour getDialogueDemo
@@ -57,35 +57,53 @@ public class Dialogue implements ActionEvent {
         this.dialoguePieces.add(piece);
     }
 
+    public ArrayList<DialoguePiece> getDialoguePieces() {
+        return this.dialoguePieces;
+    }
+
     public void update(GameContainer container, StateBasedGame game, int delta) {
 
     }
 
     public void render(GameContainer container, StateBasedGame game, Graphics context) {
 
+        int width = container.getWidth();
+        int height = container.getHeight();
         DialoguePiece dialoguePiece = dialoguePieces.get(current_piece);
 
+        // font
+        awtFont = new Font("vt323", java.awt.Font.BOLD, (int)(0.03*height));
+        font = new TrueTypeFont(awtFont, true);
+
+        // images de fond
+        Image bckground = gameData.getPictures().getDialogue_background();
+        bckground.draw(0, 0, width, height);
+        Image text_bckground = gameData.getPictures().getText_field_image();
+        text_bckground.draw(0, (int)(0.8*height), width, (int)(0.2*height));
+
+
+        // textes du dialogue
         if (dialoguePiece instanceof Line) {
             // réplique d'un personnage
 
             String characterName = ((Line)dialoguePiece).getCharacterName();
             String text = ((Line)dialoguePiece).getText();
 
-            font.drawString(20, 20, characterName, org.newdawn.slick.Color.red);
-            font.drawString(20, 40, text, org.newdawn.slick.Color.red);
+            font.drawString(60, (int)(0.825*height), characterName, org.newdawn.slick.Color.red);
+            font.drawString(40, (int)(0.875*height), text, org.newdawn.slick.Color.red);
 
         }
         if (dialoguePiece instanceof Choices) {
             // réplique du joueur
 
             // indication de la réplique actuellement sélectionnée
-            font.drawString(10, 20 + selectedLine*20, ">>", org.newdawn.slick.Color.red);
+            font.drawString(30,  (int)(0.875*height) + selectedLine*20, ">>", org.newdawn.slick.Color.red);
 
             // affichage des différentes répliques possibles
             int nbChoices = ((Choices)dialoguePiece).getNbChoices();
             for (int i = 0; i < nbChoices; i++) {
                 Choice choice = ((Choices)dialoguePiece).getChoice(i);
-                font.drawString(30, 20 + i*20, choice.getText(), org.newdawn.slick.Color.red);
+                font.drawString(45, (int)(0.875*height) + i*20, choice.getText(), org.newdawn.slick.Color.red);
             }
         }
 
@@ -154,12 +172,13 @@ public class Dialogue implements ActionEvent {
         d.add(new Line("John","How are you ?"));
 
         Choices choices = new Choices();
+        int[] effects = {0,0,0,0,0,0,0};
 
-        Choice choiceA = new Choice("Fine !");
+        Choice choiceA = new Choice("Fine !", effects);
         choiceA.addFollowingDialoguePiece(new Line("John","coool"));
         choiceA.addFollowingDialoguePiece(new Line("Maria","See you !"));
 
-        Choice choiceB = new Choice("Better than Thomas Ahah");
+        Choice choiceB = new Choice("Better than Thomas Ahah", effects);
         choiceB.addFollowingDialoguePiece(new Line("John","lmaooo"));
         choiceB.addFollowingDialoguePiece(new Line("Maria","omg"));
 

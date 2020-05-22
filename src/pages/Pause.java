@@ -2,6 +2,7 @@ package pages;
 
 import java.util.Arrays;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
@@ -28,13 +29,13 @@ public class Pause extends AppMenu {
 			new MenuItem("Retour") {
 				public void itemSelected() {
 					((World) game.getState(3)).setState(2);
-					game.enterState(3, new FadeOutTransition(), new FadeInTransition());
+					game.enterState(3, new FadeOutTransition(Color.black, Welcome.fadeTransitionTime), new FadeInTransition(Color.black, Welcome.fadeTransitionTime));
 				}
 			},
 			new MenuItem("Abandon") {
 				public void itemSelected() {
 					((World) game.getState(3)).setState(0);
-					game.enterState(1, new FadeOutTransition(), new FadeInTransition());
+					game.enterState(1, new FadeOutTransition(Color.black, Welcome.fadeTransitionTime), new FadeInTransition(Color.black, Welcome.fadeTransitionTime));
 				}
 			}
 		}));

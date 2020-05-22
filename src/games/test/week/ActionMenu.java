@@ -24,19 +24,15 @@ public class ActionMenu {
 
 
     public ActionMenu(GameData data) {
-
+        try {
+            this.background =  AppLoader.loadPicture ("res/images/home.png");
+        }catch(Exception e){
+            System.out.printf("PROBLEM !");
+        }
     }
 
     public void setWeek(Week week) {
         this.week = week;
-    }
-
-    public void init() {
-        try {
-            this.background =  AppLoader.loadPicture ("/images/home.png");
-        }catch(Exception e){
-            System.out.printf("PROBLEM !");
-        }
     }
 
     public void update(GameContainer container, StateBasedGame game, int delta) {
@@ -44,9 +40,8 @@ public class ActionMenu {
 
     public void render(GameContainer container, StateBasedGame game, Graphics context) {
         if(this.background != null){
-            this.background.draw();
+            this.background.draw(500,500);
         }
-
     }
 
     public void keyPressed(int key, char c) {

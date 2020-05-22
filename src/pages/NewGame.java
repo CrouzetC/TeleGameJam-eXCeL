@@ -2,6 +2,7 @@ package pages;
 
 import java.util.Arrays;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
@@ -33,7 +34,7 @@ public class NewGame extends AppMenu {
 		this.setMenu(Arrays.asList(new MenuItem[] {
 				new MenuItem("Confirmer") {
 					public void itemSelected() {
-						game.enterState(2, new FadeOutTransition(), new FadeInTransition());
+						game.enterState(2, new FadeOutTransition(), new FadeInTransition(Color.black, Welcome.fadeTransitionTime));
 					}
 				}
 			}));

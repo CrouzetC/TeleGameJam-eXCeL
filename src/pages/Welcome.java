@@ -1,5 +1,6 @@
 package pages;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -11,7 +12,11 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 import app.AppLoader;
 import app.AppPage;
 
+import java.awt.*;
+
 public class Welcome extends AppPage {
+
+	public static int fadeTransitionTime = 200;
 
 	private Image logo;
 
@@ -64,7 +69,7 @@ public class Welcome extends AppPage {
 		if (input.isKeyDown(Input.KEY_ESCAPE)) {
 			container.exit();
 		} else if (input.isKeyDown(Input.KEY_ENTER)) {
-			game.enterState(1, new FadeOutTransition(), new FadeInTransition());
+			game.enterState(1, new FadeOutTransition(), new FadeInTransition(Color.black, fadeTransitionTime));
 		}
 	}
 
