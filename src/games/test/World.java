@@ -4,6 +4,7 @@ import games.test.data.GameData;
 import games.test.week.ActionMenu;
 import games.test.week.Week;
 import games.test.week.actions.ActionEvent;
+import games.test.week.actions.Dialogue;
 import games.test.week.actions.Sleep;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -50,7 +51,7 @@ public class World extends BasicGameState {
 		for (int i = 0; i < nbWeeks; i++)
 			weeks.add(new Week());
 		currentAction = null;
-		currentAction = new Sleep();
+		currentAction = Dialogue.getDialogueDemo();
 
 		// start a new week
 		newWeek();
@@ -192,7 +193,7 @@ public class World extends BasicGameState {
 		if (currentAction.isOver()) {
 
 			// action suivante, ou fin de la semaine
-			currentAction = weeks.get(currentWeek).getNextAction();
+			currentAction = weeks.get(currentWeek).getNextActionEvent();
 			if (currentAction != null) {
 
 				// action suivante

@@ -39,7 +39,6 @@ public class Week {
                 return days.get(this.currentDay).getAction();
             }
         }
-
     }
 
 }

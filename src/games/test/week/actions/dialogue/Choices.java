@@ -2,18 +2,12 @@ package games.test.week.actions.dialogue;
 
 import java.util.ArrayList;
 
-public class Choices {
-
-    private String txt;
+public class Choices implements DialoguePiece {
 
     private ArrayList<Choice> choices;
 
-    public Choices(String txt) {
-        this.txt = txt;
-    }
-
-    public String getText() {
-        return txt;
+    public Choices() {
+        choices = new ArrayList<Choice>();
     }
 
     public void addChoice(Choice c) {
@@ -22,6 +16,10 @@ public class Choices {
 
     public Choice getChoice(int i) {
         return choices.get(i);
+    }
+
+    public int getNbChoices() {
+        return choices.size();
     }
 
 }
