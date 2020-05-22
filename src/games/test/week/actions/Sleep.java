@@ -7,7 +7,7 @@ import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.StateBasedGame;
 
 
-public class Sleep implements Action {
+public class Sleep implements ActionEvent {
 
     Font awtFont;
     TrueTypeFont font;

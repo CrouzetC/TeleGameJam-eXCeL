@@ -1,22 +1,22 @@
 package games.test.week;
 
-import games.test.week.actions.Action;
+import games.test.week.actions.ActionEvent;
 
 import java.util.ArrayList;
 
 public class Day {
 
-    Action task;
-    Action event; // si y'en a un
+    ActionEvent action;
+    ActionEvent event; // si y'en a un
 
     public Day() {
     }
 
     public void setAction(ActionEvent action) {
-        this.task = action;
+        this.action = action;
     }
-    public void setEvent(Action action) {
-        this.event = action;
+    public void setEvent(ActionEvent event) {
+        this.event = event;
     }
 
     public boolean hasEvent(){
@@ -25,10 +25,10 @@ public class Day {
         }
         return false;
     }
-    public Action getTask(){
-        return this.task;
+    public ActionEvent getAction(){
+        return this.action;
     }
-    public Action getEvent() {
-        return event;
+    public ActionEvent getEvent() {
+        return this.event;
     }
 }

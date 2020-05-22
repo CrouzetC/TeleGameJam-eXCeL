@@ -31,7 +31,7 @@ public class Player {
     public int[] getStatistics() {
         return statistics;
     }
-    public void getStatisticsIndex(int index){
+    public int getStatisticsIndex(int index){
         if( index < statistics.length ) {
             return this.statistics[index];
         }else{
