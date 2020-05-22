@@ -1,6 +1,7 @@
 package games.test;
 
 import games.test.week.Week;
+import games.test.week.actions.Action;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -10,10 +11,13 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class World extends BasicGameState {
-
+	// basic
 	private int ID;
 	private int state;
+	// game
 	private Week week;
+	private int gameState; // 0 : menu initial ; 1 : ActionMenu ; 2 : action
+	Action currentAction;
 
 	public World(int ID) {
 		this.ID = ID;
@@ -66,6 +70,16 @@ public class World extends BasicGameState {
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics context) {
 		/* Méthode exécutée environ 60 fois par seconde */
+	}
+
+	@Override
+	public void keyPressed(int key, char c) {
+
+	}
+
+	@Override
+	public void mousePressed(int button, int x, int y) {
+
 	}
 
 	public void play(GameContainer container, StateBasedGame game) {
