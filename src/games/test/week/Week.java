@@ -9,15 +9,12 @@ public class Week {
     ArrayList<Action> actions;
 
     public Week() {
-
-
+        actions = new ArrayList<Action>();
     }
 
-    public void initWeek() {
-
+    public void addAction(Action action) {
+        actions.add(action);
     }
-
-
 
 
 }
