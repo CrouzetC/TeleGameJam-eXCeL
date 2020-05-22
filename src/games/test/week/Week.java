@@ -16,7 +16,7 @@ public class Week {
         actions.add(action);
     }
 
-    public ActionEvent getNextAction() {
+    public ActionEvent getNextActionEvent() {
         return null;
     }
 

@@ -21,7 +21,7 @@ public class Choice {
         return txt;
     }
 
-    public ArrayList<DialoguePiece> getFollowingDialoguePiece() {
+    public ArrayList<DialoguePiece> getFollowingDialoguePieces() {
         return followingDialogue;
     }
 
