@@ -13,8 +13,8 @@ public class ActionMenu {
 
     private GameData data;
     private Week week;
-
 // Rendering :
+    private float scale;
     private Image background;
     private Image clubs;
     private Image sleep;
@@ -24,16 +24,17 @@ public class ActionMenu {
 
 
     public ActionMenu(GameData data) {
-
+        initImages();
     }
 
     public void setWeek(Week week) {
         this.week = week;
     }
 
-    public void init() {
+    public void initImages() {
+
         try {
-            this.background =  AppLoader.loadPicture ("/images/home.png");
+            this.background =  new Image("images/home.png");
         }catch(Exception e){
             System.out.printf("PROBLEM !");
         }
@@ -44,7 +45,10 @@ public class ActionMenu {
 
     public void render(GameContainer container, StateBasedGame game, Graphics context) {
         if(this.background != null){
-            this.background.draw();
+            float a = container.getWidth();
+            float b = this.background.getWidth();
+            this.scale = a/b ;
+            this.background.draw(0,0,this.scale);
         }
 
     }
