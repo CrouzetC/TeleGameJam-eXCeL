@@ -37,12 +37,14 @@ public class World extends BasicGameState {
 
 	public World(int ID) {
 
+		System.out.println("Working Directory = " + System.getProperty("user.dir"));
+
 		// basic
 		this.ID = ID;
 		this.state = 0;
 
 		// game
-		gameState = 2;
+		gameState = 3;
 		data = new GameData("some file");
 		actionMenu = new ActionMenu(data);
 
@@ -52,6 +54,7 @@ public class World extends BasicGameState {
 			weeks.add(new Week());
 		currentAction = null;
 		currentAction = Dialogue.getDialogueDemo();
+
 
 		// start a new week
 		newWeek();
@@ -119,7 +122,9 @@ public class World extends BasicGameState {
 			case 2:
 				currentAction.update(container, game, delta);
 				break;
-
+			case 3:
+				actionMenu.update(container, game, delta);
+				break;
 			default:
 				System.out.println("Error in World.update()");
 		}
@@ -139,7 +144,9 @@ public class World extends BasicGameState {
 			case 2:
 				currentAction.render(container, game, context);
 				break;
-
+			case 3:
+				actionMenu.render(container, game, context);
+				break;
 			default:
 				System.out.println("Error in World.render()");
 		}
@@ -161,7 +168,10 @@ public class World extends BasicGameState {
 				currentAction.keyPressed(key,c);
 				checkEndOfAction();
 				break;
-
+			case 3:
+				actionMenu.keyPressed(key,c);
+				checkEndOfAction();
+				break;
 			default:
 				System.out.println("Error in World.keyPressed()");
 		}
@@ -182,7 +192,9 @@ public class World extends BasicGameState {
 				currentAction.mousePressed(button, x, y);
 				checkEndOfAction();
 				break;
-
+			case 3:
+				actionMenu.mousePressed(button, x, y);
+				break;
 			default:
 				System.out.println("Error in World.mousePressed()");
 		}
