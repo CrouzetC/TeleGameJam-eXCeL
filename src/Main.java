@@ -53,6 +53,7 @@ public final class Main {
 				this.addState(new pages.Choice(1));
 				this.addState(new pages.Pause(2));
 				this.addState(new games.test.World(3));
+				this.addState(new pages.NewGame(4));
 			}
 
 		};

@@ -1,7 +1,7 @@
 package games.test.data;
 
 public class Player {
-    String name;
+    public static String name;
 
     int[] statistics;
     /* statistics[0] : Stress, Fatigue;
