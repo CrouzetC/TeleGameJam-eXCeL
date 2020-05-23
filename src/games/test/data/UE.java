@@ -28,6 +28,10 @@ public class UE {
         this.nbPoints = nbPoints;
     }
 
+    public void addPoints(int points) {
+        this.nbPoints += points;
+    }
+
     public int getThreshold() {
         return threshold;
     }

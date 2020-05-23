@@ -2,6 +2,8 @@ package games.test.data;
 
 import java.util.ArrayList;
 
+import static java.lang.Math.max;
+
 public class Player {
     public static String name;
 
@@ -59,7 +61,9 @@ public class Player {
     }
 
     public void addProject(Project p) {
-        this.projects.add(p);
+        if (ue.contains(p.getUE())) {
+            this.projects.add(p);
+        }
     }
 
     public ArrayList<UE> getUE() {
@@ -69,4 +73,39 @@ public class Player {
     public void addPointsToUE(int index, int points) {
         this.ue.get(index).setNbPoints(points + this.ue.get(index).getNbPoints());
     }
+
+    public void passProject(Project p) {
+        if (projects.contains(p)) {
+            if (p.getProgression() == 100) {
+                p.getUE().addPoints(p.getThreshold());
+            }
+        }
+    }
+
+    public void endProject(Project p) {
+        if (projects.contains(p)) {
+            if (p.getWorkedDays() == p.getQtyWork()) {
+                passProject(p);
+            }
+        }
+    }
+
+    public void dayProgress(Project p) {
+        double step = ((double) p.getWorkedDays() / (double) p.getQtyWork());
+        if (step < 1) {
+            double progress = p.getProgression();
+            double[] crit = p.getStatCriteria();
+            for (int j = 0; j < 6; j++) {
+                // Si on s'interesse a l'influence du stress et de la fatigue, la progression diminue
+                if (j == 0) {
+                    double evol = max(0.0, progress-crit[j]*step);
+                    progress = evol;
+                } else {
+                    progress += crit[j] * step;
+                }
+            }
+            p.setProgression((int) progress);
+        }
+    }
+
 }
