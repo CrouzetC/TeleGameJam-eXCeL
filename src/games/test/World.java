@@ -57,6 +57,7 @@ public class World extends BasicGameState {
 
 		// start a new week
 		newWeek();
+
 	}
 
 	public void newWeek() {
@@ -73,8 +74,10 @@ public class World extends BasicGameState {
 	}
 
 	public void	checkEndOfMenu() {
-		if (actionMenu.isOver())
+		if (actionMenu.isOver()) {
 			gameState = 2;
+			checkEndOfAction();
+		}
 	}
 
 	@Override
@@ -164,7 +167,7 @@ public class World extends BasicGameState {
 
 			case 1:
 				actionMenu.keyPressed(key,c);
-				checkEndOfAction();
+	//			checkEndOfAction();
 				break;
 
 			case 2:
@@ -202,6 +205,12 @@ public class World extends BasicGameState {
 	}
 
 	public void checkEndOfAction() {
+		if (currentAction == null){
+			// on est dans une nouvelle semaine faut attendre la fin de la planification de la semaine
+			if(actionMenu.isOver()){
+				currentAction = weeks.get(currentWeek).getNextActionEvent();
+			}
+		}
 		if (currentAction.isOver()) {
 
 			// action suivante, ou fin de la semaine
@@ -210,10 +219,9 @@ public class World extends BasicGameState {
 			if (currentAction != null) {
 				// action suivante :
 				// rien à faire
-			}
-			else {
-				// fin de la semaine
-				newWeek(); // start a new week
+			}else{
+				// avancer dans la semaine
+				newWeek();
 			}
 		}
 	}

@@ -35,7 +35,7 @@ public class Clubs implements ActionEvent {
     }
 
     public void mousePressed(int button, int x, int y) {
-
+        isOver = true;
     }
 
     public boolean isOver() {
