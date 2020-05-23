@@ -27,6 +27,14 @@ public class Dialogue implements ActionEvent {
     private ArrayList<DialoguePiece> dialoguePieces;
     int current_piece;
     int selectedLine; // pour savoir quelle est la réplique sélectionnée par le joueur
+    int NPC_position;
+    int NPC_final_position;
+    String lastNPCName;
+    int width = 1;
+    int height = 1;
+    int pictureWidth;
+    int pictureHeight;
+    static int pictureSlidingSpeed = 50;
 
     public Dialogue(GameData gameData, String filename) {
 
@@ -40,6 +48,13 @@ public class Dialogue implements ActionEvent {
         Loader.loadDialogue(this, filename);
         current_piece = 0;
         isOver = false;
+
+        NPC_position = 0;
+        NPC_final_position = 0;
+        if (dialoguePieces.get(current_piece) instanceof Line)
+            lastNPCName = ((Line)(dialoguePieces.get(current_piece))).getCharacterName();
+        else
+            lastNPCName = "unknown";
     }
 
     public Dialogue() {  // uniquement pour getDialogueDemo
@@ -52,6 +67,16 @@ public class Dialogue implements ActionEvent {
         // loading data
         dialoguePieces = new ArrayList<DialoguePiece>();
         current_piece = 0;
+
+        // placement du premier personnage
+        NPC_position = 0;
+        NPC_final_position = 0;
+        if (dialoguePieces.get(current_piece) instanceof Line) {
+            lastNPCName = ((Line) (dialoguePieces.get(current_piece))).getCharacterName();
+        }
+        else {
+            lastNPCName = "unknown";
+        }
     }
 
     public void add(DialoguePiece piece) {
@@ -68,26 +93,57 @@ public class Dialogue implements ActionEvent {
 
     public void render(GameContainer container, StateBasedGame game, Graphics context) {
 
-        int width = container.getWidth();
-        int height = container.getHeight();
+        width = container.getWidth();
+        height = container.getHeight();
+        pictureWidth = (int) (0.2 * width);
+        pictureHeight = (int) (0.7 * height);
         DialoguePiece dialoguePiece = dialoguePieces.get(current_piece);
 
-        // font
+        // police de caractères
         awtFont = new Font("vt323", java.awt.Font.BOLD, (int)(0.03*height));
         font = new TrueTypeFont(awtFont, true);
 
         // images de fond
         Image bckground = gameData.getPictures().getDialogue_background();
         bckground.draw(0, 0, width, height);
+
+        // affichage des NPC qui parlent
+        if (dialoguePieces.get(current_piece) instanceof Line) {
+            if (lastNPCName.equals("MC") == false && lastNPCName.equals("unknown") == false) {
+
+                Image image = gameData.getCharacters().getNPCPicture(lastNPCName);
+
+                // cas de la première réplique
+                if (current_piece == 0) {
+                    boolean isLeft = ((int)(lastNPCName.charAt(0) - 'A')) % 2 == 0;
+                    NPC_final_position = isLeft ? (int)(0.2*width) : (int)(0.8*width) - pictureWidth;
+                    NPC_position = NPC_final_position;
+                    image.draw(NPC_final_position, (int) (0.3 * height), pictureWidth, pictureHeight);
+                }
+                // cas des répliques suivantes
+                else {
+                    if (NPC_position > NPC_final_position) {
+                        NPC_position += NPC_position - NPC_final_position < pictureSlidingSpeed ? - (NPC_position - NPC_final_position) : -pictureSlidingSpeed;
+                    }
+                    if (NPC_position < NPC_final_position) {
+                        NPC_position += NPC_final_position - NPC_position < pictureSlidingSpeed ? NPC_final_position - NPC_position : pictureSlidingSpeed;
+                    }
+                    image.draw(NPC_position, (int) (0.3 * height), pictureWidth, pictureHeight);
+                }
+            }
+        }
+
+        // image de la boîte de dialogue
         Image text_bckground = gameData.getPictures().getText_field_image();
         text_bckground.draw(0, (int)(0.8*height), width, (int)(0.2*height));
-
 
         // textes du dialogue
         if (dialoguePiece instanceof Line) {
             // réplique d'un personnage
-
             String characterName = ((Line)dialoguePiece).getCharacterName();
+            if (characterName.equals("MC"))
+                characterName = gameData.getPlayer().getName();
+
             String text = ((Line)dialoguePiece).getText();
 
             font.drawString(60, (int)(0.825*height), characterName, org.newdawn.slick.Color.red);
@@ -161,6 +217,20 @@ public class Dialogue implements ActionEvent {
 
                 // on passe à l'élément de dialogue suivant
                 current_piece ++;
+            }
+
+            // on vérifie s'il y a un nouveau NPC à l'écran
+            if (current_piece < dialoguePieces.size()) {
+                if (dialoguePieces.get(current_piece) instanceof Line) {
+                    String name = ((Line)(dialoguePieces.get(current_piece))).getCharacterName();
+                    if (name.equals(lastNPCName) == false) {
+                        // on passe sur un nouveau NPC
+                        lastNPCName = name;
+                        boolean isLeft = ((int)(name.charAt(0) - 'A')) % 2 == 0;
+                        NPC_position = isLeft ? - pictureWidth : width;
+                        NPC_final_position = isLeft ? (int)(0.2*width) : (int)(0.8*width) - pictureWidth;
+                    }
+                }
             }
 
             // checking if the Dialogue is over
