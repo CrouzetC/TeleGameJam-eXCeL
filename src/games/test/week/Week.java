@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Week {
 
-    private static int nb_days = 7;
+    public static int nb_days = 7;
 
     private int currentDay; // 0 si on a pas encore commencé la semaine
     private boolean nextIsAction; // true si la nextAction sera une task

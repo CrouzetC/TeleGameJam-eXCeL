@@ -61,11 +61,17 @@ public class World extends BasicGameState {
 		currentWeek += 1;
 		if (currentWeek < nbWeeks) {
 			// passage à la semaine suivante
+			actionMenu.reset();
 			gameState = 1;
 		} else {
 			// fin du jeu
 			gameState = 3;
 		}
+	}
+
+	public void	checkEndOfMenu() {
+		if (actionMenu.isOver())
+			gameState = 2;
 	}
 
 	@Override
@@ -178,6 +184,7 @@ public class World extends BasicGameState {
 
 			case 1:
 				actionMenu.mousePressed(button, x, y);
+				checkEndOfMenu();
 				break;
 
 			case 2:

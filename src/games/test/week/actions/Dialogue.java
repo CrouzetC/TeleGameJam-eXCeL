@@ -115,13 +115,29 @@ public class Dialogue implements ActionEvent {
 
     public void keyPressed(int key, char c) {
 
+        // Choix d'une réplique du joueur
+        if (dialoguePieces.get(current_piece) instanceof Choices) {
+            int nb_choices = ((Choices)dialoguePieces.get(current_piece)).getNbChoices();
+
+            if (key == Input.KEY_UP) {
+                selectedLine -= 1;
+                selectedLine = (selectedLine+nb_choices) % nb_choices;
+            }
+            if (key == Input.KEY_DOWN) {
+                selectedLine += 1;
+                selectedLine = selectedLine % nb_choices;
+            }
+        }
+
         if (key == Input.KEY_ENTER) {
 
             if (dialoguePieces.get(current_piece) instanceof Line) {
 
                 current_piece++;
-                if (dialoguePieces.get(current_piece) instanceof Choices)
-                    selectedLine = 0;
+
+                if (current_piece < dialoguePieces.size())
+                    if (dialoguePieces.get(current_piece) instanceof Choices)
+                        selectedLine = 0;
 
             } else if (dialoguePieces.get(current_piece) instanceof Choices) {
                 Choice choice = ((Choices) dialoguePieces.get(current_piece)).getChoice(selectedLine);
@@ -150,20 +166,7 @@ public class Dialogue implements ActionEvent {
             // checking if the Dialogue is over
             if (current_piece == dialoguePieces.size())
                 isOver = true;
-        }
 
-        // Choix d'une réplique du joueur
-        if (dialoguePieces.get(current_piece) instanceof Choices) {
-            int nb_choices = ((Choices)dialoguePieces.get(current_piece)).getNbChoices();
-
-            if (key == Input.KEY_UP) {
-                selectedLine -= 1;
-                selectedLine = (selectedLine+nb_choices) % nb_choices;
-            }
-            if (key == Input.KEY_DOWN) {
-                selectedLine += 1;
-                selectedLine = selectedLine % nb_choices;
-            }
         }
 
     }
