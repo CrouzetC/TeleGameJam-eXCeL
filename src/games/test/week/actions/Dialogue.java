@@ -67,8 +67,10 @@ public class Dialogue implements ActionEvent {
 
     public void render(GameContainer container, StateBasedGame game, Graphics context) {
 
+        float bgWidth = this.background.getWidth();
         int width = container.getWidth();
         int height = container.getHeight();
+        float scale = bgWidth/width ;
         DialoguePiece dialoguePiece = dialoguePieces.get(current_piece);
 
         // font
@@ -89,8 +91,8 @@ public class Dialogue implements ActionEvent {
             String characterName = ((Line)dialoguePiece).getCharacterName();
             String text = ((Line)dialoguePiece).getText();
 
-            font.drawString(60, (int)(0.825*height), characterName, org.newdawn.slick.Color.red);
-            font.drawString(40, (int)(0.875*height), text, org.newdawn.slick.Color.red);
+            font.drawString(60, (int)(0.825*height), characterName, org.newdawn.slick.Color.black);
+            font.drawString(40, (int)(0.875*height), text, org.newdawn.slick.Color.black);
 
         }
         if (dialoguePiece instanceof Choices) {
@@ -106,7 +108,7 @@ public class Dialogue implements ActionEvent {
             int nbChoices = ((Choices)dialoguePiece).getNbChoices();
             for (int i = 0; i < nbChoices; i++) {
                 Choice choice = ((Choices)dialoguePiece).getChoice(i);
-                font.drawString(45, (int)(0.875*height) + i*20, choice.getText(), org.newdawn.slick.Color.red);
+                font.drawString(45, (int)(0.875*height) + i*20, choice.getText(), org.newdawn.slick.Color.black);
             }
         }
 
