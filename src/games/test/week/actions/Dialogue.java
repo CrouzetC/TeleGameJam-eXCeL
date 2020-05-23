@@ -2,6 +2,7 @@ package games.test.week.actions;
 
 import games.test.data.GameData;
 import games.test.data.Loader;
+import games.test.data.Player;
 import games.test.week.actions.dialogue.Choice;
 import games.test.week.actions.dialogue.Choices;
 import games.test.week.actions.dialogue.DialoguePiece;
@@ -126,6 +127,14 @@ public class Dialogue implements ActionEvent {
                 Choice choice = ((Choices) dialoguePieces.get(current_piece)).getChoice(selectedLine);
 
                 // déclenchement de l'action associée au choix
+
+                // modification des statistiques
+                int[] effects = choice.getEffects();
+                for (int i = 0; i < Player.nb_stats; i++) {
+                    gameData.getPlayer().modifyStatistic(i, effects[i]);
+                }
+                // avancement du projet
+                int project_advancement = effects[Player.nb_stats];
                 // TODO !!!!
 
                 // on insère les prochains éléments de dialogue

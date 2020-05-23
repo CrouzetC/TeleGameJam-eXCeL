@@ -7,13 +7,15 @@ import java.util.ArrayList;
 
 public class Week {
 
+    private static int nb_days = 7;
+
     private int currentDay; // 0 si on a pas encore commencé la semaine
     private boolean nextIsAction; // true si la nextAction sera une task
 
     ArrayList<Day> days;
 
     public Week() {
-        this.days = new ArrayList<Day>(7);
+        this.days = new ArrayList<Day>(nb_days);
         this.currentDay = 0;
         this.nextIsAction = true;
     }
@@ -26,6 +28,7 @@ public class Week {
     }
 
     public ActionEvent getNextActionEvent(){
+
         if (this.nextIsAction){
             this.nextIsAction = false;
             return days.get(this.currentDay).getAction();
@@ -36,9 +39,13 @@ public class Week {
                 return days.get(this.currentDay-1).getEvent();
             }else{ // Y'a pas d'event faut retourner la task du jour suivant
                 this.currentDay += 1;
-                return days.get(this.currentDay).getAction();
+                if (currentDay > nb_days-1)
+                    return null;
+                else
+                    return days.get(this.currentDay).getAction();
             }
         }
+
     }
 
 }
