@@ -23,6 +23,9 @@ public class Dialogue implements ActionEvent {
     // game
     boolean isOver;
 
+    // song
+    Sound foot_steps;
+
     // dialogue pieces
     private ArrayList<DialoguePiece> dialoguePieces;
     int current_piece;
@@ -41,6 +44,13 @@ public class Dialogue implements ActionEvent {
         // font
         awtFont = new Font("vt323", java.awt.Font.BOLD, 12);
         font = new TrueTypeFont(awtFont, true);
+
+        // song
+        try {
+            foot_steps = new Sound("res/songs/foot_steps.wav");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // loading data
         this.gameData = gameData;
@@ -63,6 +73,13 @@ public class Dialogue implements ActionEvent {
         awtFont = new Font("vt323", java.awt.Font.BOLD, 12);
         font = new TrueTypeFont(awtFont, true);
         isOver = false;
+
+        // song
+        try {
+            foot_steps = new Sound("res/songs/foot_steps.wav");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // loading data
         dialoguePieces = new ArrayList<DialoguePiece>();
@@ -227,11 +244,15 @@ public class Dialogue implements ActionEvent {
                 if (dialoguePieces.get(current_piece) instanceof Line) {
                     String name = ((Line)(dialoguePieces.get(current_piece))).getCharacterName();
                     if (name.equals(lastNPCName) == false) {
+
                         // on passe sur un nouveau NPC
                         lastNPCName = name;
                         boolean isLeft = ((int)(name.charAt(0) - 'A')) % 2 == 0;
                         NPC_position = isLeft ? - pictureWidth : width;
                         NPC_final_position = isLeft ? (int)(0.2*width) : (int)(0.8*width) - pictureWidth;
+
+                        // on lance le bruitage des pas
+                        foot_steps.play();
                     }
                 }
             }

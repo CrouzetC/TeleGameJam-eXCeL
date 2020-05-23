@@ -3,10 +3,8 @@ package games.test.week;
 
 import games.test.data.GameData;
 import games.test.week.actions.*;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
+import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.Image;
 
 import app.AppLoader;
 
@@ -29,10 +27,19 @@ public class ActionMenu {
     private float smallScale;
     private boolean isOver;
     private int current_day;
+    // song
+    Sound selection_song;
 
     public ActionMenu(GameData data) {
         initImages();
         isOver = false;
+
+        // song
+        try {
+            selection_song = new Sound("res/songs/selection.wav");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void initImages() {
@@ -118,6 +125,7 @@ public class ActionMenu {
             System.out.println(""+current_day);
             week.setActionofDayIndex(current_day,action);
 
+            selection_song.play();
             current_day ++;
 
         } else if (isClicked(w+w2+step, h,w2, h2, x, y)) {
@@ -127,6 +135,7 @@ public class ActionMenu {
             ActionEvent action = new Socialize();
             week.setActionofDayIndex(current_day,action);
 
+            selection_song.play();
             current_day ++;
 
         } else if (isClicked(w+2*w2+2*step, h,w2, h2, x, y)) {
@@ -136,7 +145,9 @@ public class ActionMenu {
             ActionEvent action = new Study();
             week.setActionofDayIndex(current_day,action);
 
+            selection_song.play();
             current_day++;
+
         }else if (isClicked(w,h+h2+step,w2,h2,x,y)) {
             // Sleep
             System.out.println("CLIC sleep");
@@ -144,34 +155,36 @@ public class ActionMenu {
             ActionEvent action = new Sleep();
             week.setActionofDayIndex(current_day,action);
 
+            selection_song.play();
             current_day++;
+
         }else if(isClicked(w+w2+step,h+h2+step,w2,h2,x,y)){
-            // Date Time
-            System.out.println("CLIC date time not implemented yet");
+                // Date Time
+                System.out.println("CLIC date time not implemented yet");
 
 //            ActionEvent action = new Date();
 //            week.setActionofDayIndex(current_day,action);
 
-        } else {
+                } else {
 
-        }
+                }
 
-        // fin du menu
-        if (current_day >= Week.nb_days) {
-            isOver = true;
-        }
+                // fin du menu
+                if (current_day >= Week.nb_days) {
+                isOver = true;
+                }
 
-    }
+                }
 
-    public boolean isClicked(int x0, int y0, int width, int height, int x, int y) {
+public boolean isClicked(int x0, int y0, int width, int height, int x, int y) {
         if (x >= x0 && x < x0+width && y >= y0 && y < y0+height)
-            return true;
+        return true;
         else
-            return false;
-    }
+        return false;
+        }
 
-    public boolean isOver() {
+public boolean isOver() {
         return isOver;
-    }
+        }
 
-}
+        }
