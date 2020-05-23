@@ -1,6 +1,8 @@
 package games.test;
 
 import games.test.data.GameData;
+import games.test.data.Player;
+import games.test.data.Project;
 import games.test.week.ActionMenu;
 import games.test.week.Week;
 import games.test.week.actions.ActionEvent;
@@ -33,6 +35,9 @@ public class World extends BasicGameState {
 	int currentWeek;
 	ActionEvent currentAction;
 
+	// Player
+	private Player player;
+
 	public World(int ID) {
 
 		System.out.println("Working Directory = " + System.getProperty("user.dir"));
@@ -53,6 +58,10 @@ public class World extends BasicGameState {
 		currentAction = null;
 		currentAction = new Dialogue(data, "res/data/dialogue1.txt");
 
+		// Player
+		player = new Player();
+		player.addProject(new Project("Compil", player.getUE().get(1), 30, 10, (new double[]{0.3, 0.3, 0, 0, 0.3, 0.1}), "res/images/projets/compil-sama.png"));
+		player.addProject(new Project("PIDR", player.getUE().get(0), 20, 14, new double[]{0.1,0.2,0.2,0.2,0.2,0.1}, "res/images/projets/pidr-chan.png"));
 		//actionMenu.setWeek(weeks.get(currentWeek));
 
 		// start a new week
@@ -62,6 +71,9 @@ public class World extends BasicGameState {
 
 	public void newWeek() {
 		currentWeek += 1;
+		if (currentWeek == nbWeeks) {
+			player.addProject(new Project("Anglais", player.getUE().get(2), 10,5, new double[]{0.1,0.05,0.05,0.3,0.0,0.5}, "res/images/projets/anglais.png"));
+		}
 		if (currentWeek <= nbWeeks) {
 			// passage à la semaine suivante
 			actionMenu.reset();
