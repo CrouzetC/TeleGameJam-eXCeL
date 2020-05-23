@@ -8,6 +8,7 @@ import games.test.week.Week;
 import games.test.week.actions.ActionEvent;
 import games.test.week.actions.Dialogue;
 import games.test.week.actions.Sleep;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -15,8 +16,11 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+import pages.Welcome;
 
 import java.util.ArrayList;
+
+import static pages.Welcome.fadeTransitionTime;
 
 public class World extends BasicGameState {
 
@@ -77,7 +81,7 @@ public class World extends BasicGameState {
 		if (currentWeek <= nbWeeks) {
 			// passage à la semaine suivante
 			actionMenu.reset();
-			actionMenu.setWeek(weeks.get(currentWeek));
+			actionMenu.setWeek(weeks.get(currentWeek-1));
 			currentAction = new Dialogue(data, String.format("res/data/dialogue"+"%d"+".txt", currentWeek));
 			gameState = 1;
 		} else {
@@ -132,7 +136,7 @@ public class World extends BasicGameState {
 		// leaving game
 		if (input.isKeyDown(Input.KEY_ESCAPE)) {
 			this.setState(1);
-			game.enterState(2, new FadeOutTransition(), new FadeInTransition());
+			game.enterState(2, new FadeOutTransition(Color.black, Welcome.fadeTransitionTime), new FadeInTransition(Color.black, fadeTransitionTime));
 		}
 
 		// other updates (required for animations)
@@ -144,8 +148,19 @@ public class World extends BasicGameState {
 
 			case 2:
 				currentAction.update(container, game, delta);
+				for (int j = 0; j<player.getProjects().size(); j++) {
+					player.dayProgress(player.getProjects().get(j));
+					player.endProject(player.getProjects().get(j));
+				}
 				break;
-
+			case 3:
+				for (int j=0; j<player.getUE().size(); j++) {
+					if (!(player.getUE().get(j).isValidated())) {
+						game.enterState(5, new FadeOutTransition(Color.black, fadeTransitionTime), new FadeInTransition(Color.black, fadeTransitionTime));
+					}
+					game.enterState(6, new FadeOutTransition(Color.black,Welcome.fadeTransitionTime), new FadeInTransition(Color.black, fadeTransitionTime));
+				}
+				break;
 			default:
 				System.out.println("Error in World.update()");
 		}
@@ -221,13 +236,13 @@ public class World extends BasicGameState {
 		if (currentAction == null){
 			// on est dans une nouvelle semaine faut attendre la fin de la planification de la semaine
 			if(actionMenu.isOver()){
-				currentAction = weeks.get(currentWeek).getNextActionEvent();
+				currentAction = weeks.get(currentWeek-1).getNextActionEvent();
 			}
 		}
 		if (currentAction.isOver()) {
 
 			// action suivante, ou fin de la semaine
-			currentAction = weeks.get(currentWeek).getNextActionEvent();
+			currentAction = weeks.get(currentWeek-1).getNextActionEvent();
 
 			if (currentAction != null) {
 				// action suivante :
