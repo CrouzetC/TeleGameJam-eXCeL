@@ -130,7 +130,6 @@ public class ActionMenu {
 
         } else if (isClicked(w+w2+step, h,w2, h2, x, y)) {
             // Socialize
-            System.out.println("CLIC social");
 
             ActionEvent action = new Socialize();
             week.setActionofDayIndex(current_day,action);
@@ -140,7 +139,6 @@ public class ActionMenu {
 
         } else if (isClicked(w+2*w2+2*step, h,w2, h2, x, y)) {
             // Study
-            System.out.println("CLIC study");
 
             ActionEvent action = new Study();
             week.setActionofDayIndex(current_day,action);
@@ -150,7 +148,6 @@ public class ActionMenu {
 
         }else if (isClicked(w,h+h2+step,w2,h2,x,y)) {
             // Sleep
-            System.out.println("CLIC sleep");
 
             ActionEvent action = new Sleep();
             week.setActionofDayIndex(current_day,action);
@@ -165,16 +162,16 @@ public class ActionMenu {
 //            ActionEvent action = new Date();
 //            week.setActionofDayIndex(current_day,action);
 
-                } else {
+        } else {
 
-                }
+        }
 
-                // fin du menu
-                if (current_day >= Week.nb_days) {
-                isOver = true;
-                }
+        // fin du menu
+        if (current_day >= Week.nb_days) {
+            isOver = true;
+        }
 
-                }
+    }
 
 public boolean isClicked(int x0, int y0, int width, int height, int x, int y) {
         if (x >= x0 && x < x0+width && y >= y0 && y < y0+height)
@@ -187,4 +184,4 @@ public boolean isOver() {
         return isOver;
         }
 
-        }
+}

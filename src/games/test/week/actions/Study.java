@@ -12,11 +12,17 @@ public class Study implements ActionEvent {
     Font awtFont;
     TrueTypeFont font;
     boolean isOver;
+    Image image;
 
     public Study() {
         awtFont = new Font("vt323", java.awt.Font.BOLD, 12);
         font = new TrueTypeFont(awtFont, true);
         isOver = false;
+        try {
+            image = new Image("res/images/dialogue/studying.png");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void update(GameContainer container, StateBasedGame game, int delta) {
@@ -25,12 +31,13 @@ public class Study implements ActionEvent {
 
     public void render(GameContainer container, StateBasedGame game, Graphics context) {
 
+        image.draw(0, 0, container.getWidth(), container.getHeight());
         font.drawString(20, 20, "You are studying", Color.red);
 
     }
 
     public void keyPressed(int key, char c) {
-        if (c=='a')
+        if (key == Input.KEY_ENTER)
             isOver = true;
     }
 
