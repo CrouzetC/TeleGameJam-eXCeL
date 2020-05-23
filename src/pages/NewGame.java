@@ -50,10 +50,10 @@ public class NewGame extends AppMenu {
 		super.update(container, game, delta);
 		Input input = container.getInput();
 		if (input.isKeyDown(Input.KEY_ESCAPE)) {
-			game.enterState(1, new FadeOutTransition(), new FadeInTransition());
+			game.enterState(1, new FadeOutTransition(Color.black,Welcome.fadeTransitionTime), new FadeInTransition(Color.black,Welcome.fadeTransitionTime));
 		} else if (input.isKeyDown(Input.KEY_ENTER)) {
 			Player.name = this.tf.getText();
-			game.enterState(3, new FadeOutTransition(), new FadeInTransition());
+			game.enterState(3, new FadeOutTransition(Color.black,Welcome.fadeTransitionTime), new FadeInTransition(Color.black,Welcome.fadeTransitionTime));
 		}
 	}
 

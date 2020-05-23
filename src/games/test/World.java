@@ -44,7 +44,7 @@ public class World extends BasicGameState {
 		this.state = 0;
 
 		// game
-		gameState = 2;
+		gameState = 3;
 		data = new GameData("some file");
 		actionMenu = new ActionMenu(data);
 
