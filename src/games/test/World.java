@@ -124,7 +124,7 @@ public class World extends BasicGameState {
 			this.pause(container, game);
 		} else if (this.state == 3) {
 			this.stop(container, game);
-			this.state = 0;
+			//this.state = 0;
 		}
 	}
 
@@ -157,9 +157,10 @@ public class World extends BasicGameState {
 				for (int j=0; j<player.getUE().size(); j++) {
 					if (!(player.getUE().get(j).isValidated())) {
 						game.enterState(5, new FadeOutTransition(Color.black, fadeTransitionTime), new FadeInTransition(Color.black, fadeTransitionTime));
+						break;
 					}
-					game.enterState(6, new FadeOutTransition(Color.black,Welcome.fadeTransitionTime), new FadeInTransition(Color.black, fadeTransitionTime));
 				}
+				game.enterState(6, new FadeOutTransition(Color.black,Welcome.fadeTransitionTime), new FadeInTransition(Color.black, fadeTransitionTime));
 				break;
 			default:
 				System.out.println("Error in World.update()");
@@ -178,7 +179,8 @@ public class World extends BasicGameState {
 			case 2:
 				currentAction.render(container, game, context);
 				break;
-
+			case 3:
+				break;
 			default:
 				System.out.println("Error in World.render()");
 		}
