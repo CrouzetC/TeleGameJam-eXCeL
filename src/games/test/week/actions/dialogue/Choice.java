@@ -34,4 +34,7 @@ public class Choice {
     }
 
     public ArrayList<DialoguePiece> getFollowingDialogue() {return this.followingDialogue;}
+
+    public int[] getEffects() {return this.effects;}
+
 }

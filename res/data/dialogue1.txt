@@ -9,11 +9,11 @@ CHOICE
 A
 "[interlocuteur]"
 "[phrase]"
-"[interlocuteur]"
-"[phrase]"
 B
 "[interlocuteur]"
 "[phrase]"
+"Alice"
+"hohoho"
 "[interlocuteur]"
 "[phrase]"
 C
@@ -29,11 +29,7 @@ CHOICE
 A
 "[interlocuteur]"
 "[phrase]"
-"[interlocuteur]"
-"[phrase]"
 B
-"[interlocuteur]"
-"[phrase]"
 "[interlocuteur]"
 "[phrase]"
 END

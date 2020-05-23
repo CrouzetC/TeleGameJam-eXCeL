@@ -23,14 +23,12 @@ public class World extends BasicGameState {
 	private int state;
 
 	// game
-	private int gameState; // 0 : menu initial ; 1 : ActionMenu ; 2 : action
+	private int gameState; // 1 : ActionMenu ; 2 : action
 	private GameData data;
 	ActionMenu actionMenu;
 
 	// weeks
 	private static int nbWeeks = 10;
-	private static int nbActions = 6;
-	private static int nbEvents = 1;
 	private ArrayList<Week> weeks;
 	int currentWeek;
 	ActionEvent currentAction;
@@ -44,7 +42,7 @@ public class World extends BasicGameState {
 		this.state = 0;
 
 		// game
-		gameState = 3;
+		gameState = 1;
 		data = new GameData("some file");
 		actionMenu = new ActionMenu(data);
 
@@ -60,11 +58,20 @@ public class World extends BasicGameState {
 	}
 
 	public void newWeek() {
-
+		currentWeek += 1;
+		if (currentWeek < nbWeeks) {
+			// passage à la semaine suivante
+			actionMenu.reset();
+			gameState = 1;
+		} else {
+			// fin du jeu
+			gameState = 3;
+		}
 	}
 
-	public void endWeek() {
-
+	public void	checkEndOfMenu() {
+		if (actionMenu.isOver())
+			gameState = 2;
 	}
 
 	@Override
@@ -112,20 +119,14 @@ public class World extends BasicGameState {
 		// other updates (required for animations)
 
 		switch (gameState) {
-			case 0:
-				break;
-
 			case 1:
+				actionMenu.update(container, game, delta);
 				break;
 
 			case 2:
 				currentAction.update(container, game, delta);
 				break;
-			case 3:
-				actionMenu.update(container, game, delta);
-				break;
-			case 4:
-				break;
+
 			default:
 				System.out.println("Error in World.update()");
 		}
@@ -136,20 +137,14 @@ public class World extends BasicGameState {
 		/* Méthode exécutée environ 60 fois par seconde */
 
 		switch (gameState) {
-			case 0:
-				break;
-
 			case 1:
+				actionMenu.render(container, game, context);
 				break;
 
 			case 2:
 				currentAction.render(container, game, context);
 				break;
-			case 3:
-				actionMenu.render(container, game, context);
-				break;
-			case 4:
-				break;
+
 			default:
 				System.out.println("Error in World.render()");
 		}
@@ -165,16 +160,15 @@ public class World extends BasicGameState {
 				break;
 
 			case 1:
+				actionMenu.keyPressed(key,c);
+				checkEndOfAction();
 				break;
 
 			case 2:
 				currentAction.keyPressed(key,c);
 				checkEndOfAction();
 				break;
-			case 3:
-				actionMenu.keyPressed(key,c);
-				checkEndOfAction();
-				break;
+
 			default:
 				System.out.println("Error in World.keyPressed()");
 		}
@@ -189,15 +183,15 @@ public class World extends BasicGameState {
 				break;
 
 			case 1:
+				actionMenu.mousePressed(button, x, y);
+				checkEndOfMenu();
 				break;
 
 			case 2:
 				currentAction.mousePressed(button, x, y);
 				checkEndOfAction();
 				break;
-			case 3:
-				actionMenu.mousePressed(button, x, y);
-				break;
+
 			default:
 				System.out.println("Error in World.mousePressed()");
 		}
@@ -209,18 +203,14 @@ public class World extends BasicGameState {
 
 			// action suivante, ou fin de la semaine
 			currentAction = weeks.get(currentWeek).getNextActionEvent();
+
 			if (currentAction != null) {
-
-				// action suivante
-				System.out.println("Action suivante !");
-
+				// action suivante :
+				// rien à faire
 			}
 			else {
-
 				// fin de la semaine
-				endWeek();
-				System.out.println("Fin de la semaine !");
-
+				newWeek(); // start a new week
 			}
 		}
 	}

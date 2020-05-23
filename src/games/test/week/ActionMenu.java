@@ -23,9 +23,15 @@ public class ActionMenu {
     private Image dateTime;
     private Image select;
     private Image theWeek;
+    private int width;
+    private int height;
+    private float smallScale;
+    private boolean isOver;
+    private int current_day;
 
     public ActionMenu(GameData data) {
         initImages();
+        isOver = false;
     }
 
     public void initImages() {
@@ -45,6 +51,11 @@ public class ActionMenu {
         }
     }
 
+    public void reset() {
+        current_day = 0;
+        isOver = false;
+    }
+
     public void setWeek(Week week) {
         this.week = week;
     }
@@ -55,14 +66,14 @@ public class ActionMenu {
     public void render(GameContainer container, StateBasedGame game, Graphics context) {
         if(this.background != null){
 
-            float width = container.getWidth();
-            float height = container.getHeight();
+            width = container.getWidth();
+            height = container.getHeight();
 
             float b = this.background.getWidth();
             this.scale = width/b ;
             this.background.draw(0,0,this.scale);
 
-            float smallScale = scale/2;
+            smallScale = scale/2;
             int h = (int) height*2/3;
             int step = (int) width/100;
             int w2 = (int) (study.getWidth()*smallScale);
@@ -81,8 +92,7 @@ public class ActionMenu {
             int midW2 = (int) (midW + step2/2 - (select.getWidth()*smallScale)/2);
             this.theWeek.draw(midW, midH, scale);
 
-            int i = 1; // on a sélectionné le deuxième jour ici
-            this.select.draw(midW2+i*step2,midH-select.getHeight()*smallScale,smallScale);
+            this.select.draw(midW2+current_day*step2,midH-select.getHeight()*smallScale,smallScale);
 
         }
     }
@@ -93,6 +103,51 @@ public class ActionMenu {
 
     public void mousePressed(int button, int x, int y) {
 
+        int h = (int) height*2/3;
+        int step = (int) width/100;
+        int w2 = (int) (study.getWidth()*smallScale);
+        int h2 = (int) (study.getHeight()*smallScale);
+        int w = (int) (width - w2*3 - 2*step) /2;
+
+        if (isClicked(w, h, 153, 112, x, y)) {
+
+            // on a cliqué sur Club
+            System.out.println("CLIC");
+
+            current_day ++;
+
+        } else if (false) {
+
+            // ...
+
+            current_day ++;
+
+        } else if (false) {
+
+            // ...
+
+            current_day ++;
+
+        } else {
+
+        }
+
+        // fin du menu
+        if (current_day >= Week.nb_days) {
+            isOver = true;
+        }
+
+    }
+
+    public boolean isClicked(int x0, int y0, int width, int height, int x, int y) {
+        if (x >= x0 && x < x0+width && y >= y0 && y < y0+height)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean isOver() {
+        return isOver;
     }
 
 }
