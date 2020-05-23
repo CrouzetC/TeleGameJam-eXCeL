@@ -4,10 +4,12 @@ import games.test.week.Week;
 import games.test.week.actions.ActionEvent;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class GameData {
 
     private ArrayList<Project> allProjects;
+    private ArrayList<Project> remainingProjects;
     private ArrayList<ActionEvent> allActions;
     private ArrayList<UE> allUE;
     private Player player;
@@ -36,12 +38,30 @@ public class GameData {
 
         // Projects
         allProjects = new ArrayList<Project>();
-        Loader.loadProjects(allProjects, dataFileName);
+        Loader.loadProjects(allProjects, this, dataFileName);
+        remainingProjects = new ArrayList<Project>();
+        for (int i = 0; i < allProjects.size(); i++)
+            remainingProjects.add(allProjects.get(i));
 
         // All possible Actions
         allActions = new ArrayList<ActionEvent>();
         Loader.loadActions(allActions, this, dataFileName);
 
+    }
+
+    public Project attributeRandomProject() {
+        int rand = ThreadLocalRandom.current().nextInt(0, remainingProjects.size());
+        Project p = remainingProjects.remove(rand);
+        return p;
+    }
+
+    public UE getUE(String title) {
+        int index = 0;
+        for (int i = 0; i < allUE.size(); i++) {
+            if (allUE.get(i).getName().equals(title))
+                index = i;
+        }
+        return allUE.get(index);
     }
 
     public ArrayList<Project> getAllProjects () {

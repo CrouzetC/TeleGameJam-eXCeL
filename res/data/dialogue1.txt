@@ -1,47 +1,47 @@
-"Alice"
+"MC"
 "kachaw"
-"Alice"
+"Alicia"
 "Hello"
-"Alice"
+"Alicia"
 "World"
 CHOICE
-3,"[phrase A]",10 10 10 10 10 10 2,"[phrase B]",0 0 0 0 0 0 0,"[phrase C]",0 0 0 0 0 0 0
+3,"[phrase A]",10 10 10 10 10 10 50,"[phrase B]",0 0 0 0 0 0 100,"[phrase C]",0 0 0 0 0 0 100
 A
-"John"
+"Marcus"
 "[phrase]"
 B
 "Archibald"
 "[phrase]"
-"Alice"
+"Alicia"
 "hohoho"
-"Archibald"
+"Shizuku"
 "[phrase]"
 C
-"Archibald"
+"Shizuku"
 "[phrase]"
 CHOICE
-2,"[phrase A]",10 10 10 10 10 10 2,"[phrase B]",0 0 0 0 0 0 0,"[phrase C]",0 0 0 0 0 0 0
+2,"[phrase A]",10 10 10 10 10 10 50,"[phrase B]",0 0 0 0 0 0 0,"[phrase C]",0 0 0 0 0 0 0
 A
-"John"
+"Marcus"
 "HO"
 B
-"John"
+"Marcus"
 "HA"
 END
 END
-"Alice"
+"Alicia"
 "A"
-"Archibald"
+"Shizuku"
 "B"
 CHOICE
-2,"[phrase A]",10 10 10 10 10 10 2,"[phrase B]",0 0 0 0 0 0 0
+2,"[phrase A]",10 10 10 10 10 10 50,"[phrase B]",0 0 0 0 0 0 0
 A
-"John"
+"Marcus"
 "[phrase]"
 B
-"Alice"
+"Alicia"
 "[phrase]"
 END
-"Alice"
+"Shizuku"
 "Aurevoir"
 END

@@ -31,7 +31,7 @@ public class Sleep implements ActionEvent {
 
     public void render(GameContainer container, StateBasedGame game, Graphics context) {
 
-        image.draw(0,container.getHeight(), container.getWidth(), container.getHeight());
+        image.draw(0, 0, container.getWidth(), container.getHeight());
         font.drawString(20, 20, "You are sleeping...", Color.red);
 
     }

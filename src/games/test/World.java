@@ -1,11 +1,14 @@
 package games.test;
 
 import games.test.data.GameData;
+import games.test.data.Player;
+import games.test.data.Project;
 import games.test.week.ActionMenu;
 import games.test.week.Week;
 import games.test.week.actions.ActionEvent;
 import games.test.week.actions.Dialogue;
 import games.test.week.actions.Sleep;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -13,8 +16,11 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+import pages.Welcome;
 
 import java.util.ArrayList;
+
+import static pages.Welcome.fadeTransitionTime;
 
 public class World extends BasicGameState {
 
@@ -28,14 +34,15 @@ public class World extends BasicGameState {
 	ActionMenu actionMenu;
 
 	// weeks
-	private static int nbWeeks = 3;
+	private static int nbWeeks = 2;
 	private ArrayList<Week> weeks;
 	int currentWeek;
 	ActionEvent currentAction;
 
-	public World(int ID) {
+	// Player
+	private Player player;
 
-		System.out.println("Working Directory = " + System.getProperty("user.dir"));
+	public World(int ID) {
 
 		// basic
 		this.ID = ID;
@@ -53,7 +60,10 @@ public class World extends BasicGameState {
 		currentAction = null;
 		currentAction = new Dialogue(data, "res/data/dialogue1.txt");
 
+		// Player
+		player = new Player();
 		//actionMenu.setWeek(weeks.get(currentWeek));
+		player.addProject(data.attributeRandomProject()); // attribution d'un projet initial au Player
 
 		// start a new week
 		newWeek();
@@ -62,10 +72,14 @@ public class World extends BasicGameState {
 
 	public void newWeek() {
 		currentWeek += 1;
-		if (currentWeek < nbWeeks) {
+		if (currentWeek == nbWeeks) {
+			player.addProject(new Project("Anglais", player.getUE().get(2), 10,5, new double[]{0.1,0.05,0.05,0.3,0.0,0.5}, "res/images/projets/anglais.png"));
+		}
+		if (currentWeek <= nbWeeks) {
 			// passage à la semaine suivante
 			actionMenu.reset();
-			actionMenu.setWeek(weeks.get(currentWeek));
+			actionMenu.setWeek(weeks.get(currentWeek-1));
+			currentAction = new Dialogue(data, String.format("res/data/dialogue"+"%d"+".txt", currentWeek));
 			gameState = 1;
 		} else {
 			// fin du jeu
@@ -107,7 +121,7 @@ public class World extends BasicGameState {
 			this.pause(container, game);
 		} else if (this.state == 3) {
 			this.stop(container, game);
-			this.state = 0;
+			//this.state = 0;
 		}
 	}
 
@@ -119,7 +133,7 @@ public class World extends BasicGameState {
 		// leaving game
 		if (input.isKeyDown(Input.KEY_ESCAPE)) {
 			this.setState(1);
-			game.enterState(2, new FadeOutTransition(), new FadeInTransition());
+			game.enterState(2, new FadeOutTransition(Color.black, Welcome.fadeTransitionTime), new FadeInTransition(Color.black, fadeTransitionTime));
 		}
 
 		// other updates (required for animations)
@@ -131,8 +145,20 @@ public class World extends BasicGameState {
 
 			case 2:
 				currentAction.update(container, game, delta);
+				for (int j = 0; j<player.getProjects().size(); j++) {
+					player.dayProgress(player.getProjects().get(j));
+					player.endProject(player.getProjects().get(j));
+				}
 				break;
-
+			case 3:
+				for (int j=0; j<player.getUE().size(); j++) {
+					if (!(player.getUE().get(j).isValidated())) {
+						game.enterState(5, new FadeOutTransition(Color.black, fadeTransitionTime), new FadeInTransition(Color.black, fadeTransitionTime));
+						break;
+					}
+				}
+				game.enterState(6, new FadeOutTransition(Color.black,Welcome.fadeTransitionTime), new FadeInTransition(Color.black, fadeTransitionTime));
+				break;
 			default:
 				System.out.println("Error in World.update()");
 		}
@@ -150,7 +176,8 @@ public class World extends BasicGameState {
 			case 2:
 				currentAction.render(container, game, context);
 				break;
-
+			case 3:
+				break;
 			default:
 				System.out.println("Error in World.render()");
 		}
@@ -208,13 +235,13 @@ public class World extends BasicGameState {
 		if (currentAction == null){
 			// on est dans une nouvelle semaine faut attendre la fin de la planification de la semaine
 			if(actionMenu.isOver()){
-				currentAction = weeks.get(currentWeek).getNextActionEvent();
+				currentAction = weeks.get(currentWeek-1).getNextActionEvent();
 			}
 		}
 		if (currentAction.isOver()) {
 
 			// action suivante, ou fin de la semaine
-			currentAction = weeks.get(currentWeek).getNextActionEvent();
+			currentAction = weeks.get(currentWeek-1).getNextActionEvent();
 
 			if (currentAction != null) {
 				// action suivante :
