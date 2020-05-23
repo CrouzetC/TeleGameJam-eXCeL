@@ -19,9 +19,9 @@ public class GameData {
 
         // UE
         allUE = new ArrayList<UE>();
-        allUE.add(new UE("SFA"));
-        allUE.add(new UE("STIC"));
-        allUE.add(new UE("SEHS"));
+        allUE.add(new UE("SFA", 20));
+        allUE.add(new UE("STIC", 30));
+        allUE.add(new UE("SEHS", 10));
 
         //  Player NPCs and pictures
         player = new Player();

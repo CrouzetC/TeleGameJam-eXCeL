@@ -1,5 +1,7 @@
 package games.test.data;
 
+import java.util.ArrayList;
+
 public class Player {
     public static String name;
 
@@ -13,11 +15,21 @@ public class Player {
     * statistics[5] : Charisme, Social, GdP;
     */
 
+    private ArrayList<Project> projects;
+
+    private ArrayList<UE> ue;
+
     public Player() {
         this.statistics = new int[nb_stats];
         this.name = name;
         for (int i = 0; i < nb_stats; i++)
             statistics[i] = 30;
+        this.projects = new ArrayList<>();
+        this.ue = new ArrayList<>();
+        this.ue.add(new UE("SFA", 20));
+        this.ue.add(new UE("STIC", 30));
+        this.ue.add(new UE("SEHS", 10));
+        // Peut-etre qu'il faut les importer depuis GameData
     }
 
     /*  GETTER ET SETTER */
@@ -42,4 +54,19 @@ public class Player {
         if (statistics[stat_index] > 100) statistics[stat_index] = 100;
     }
 
+    public ArrayList<Project> getProjects() {
+        return projects;
+    }
+
+    public void addProject(Project p) {
+        this.projects.add(p);
+    }
+
+    public ArrayList<UE> getUE() {
+        return this.ue;
+    }
+
+    public void addPointsToUE(int index, int points) {
+        this.ue.get(index).setNbPoints(points + this.ue.get(index).getNbPoints());
+    }
 }
