@@ -26,7 +26,7 @@ public class Choice extends AppMenu {
 		this.setMenu(Arrays.asList(new MenuItem[] {
 			new MenuItem("Nouvelle partie") {
 				public void itemSelected() {
-					game.enterState(4, new FadeOutTransition(Color.black,Welcome.fadeTransitionTime), new FadeInTransition(Color.black,Welcome.fadeTransitionTime));
+					game.enterState(6, new FadeOutTransition(Color.black,Welcome.fadeTransitionTime), new FadeInTransition(Color.black,Welcome.fadeTransitionTime));
 
 				}
 			},

@@ -10,7 +10,7 @@ public class Pictures {
     public Pictures() {
         try {
             text_field_image = new Image("res/images/dialogue/text_zone.png");
-            dialogue_background = new Image("res/images/dialogue/background.png");
+            dialogue_background = new Image("res/images/dialogue/corridores.png");
         } catch (Exception e) {
             e.printStackTrace();
         }

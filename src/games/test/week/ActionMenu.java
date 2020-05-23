@@ -120,7 +120,6 @@ public class ActionMenu {
         if (isClicked(w, h,w2, h2, x, y)) {
 
             // on a cliqué sur Club
-            System.out.println("CLIC club");
             ActionEvent action = new Clubs();
             System.out.println(""+current_day);
             week.setActionofDayIndex(current_day,action);
