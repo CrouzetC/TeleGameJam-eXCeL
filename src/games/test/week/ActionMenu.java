@@ -23,6 +23,9 @@ public class ActionMenu {
     private Image dateTime;
     private Image select;
     private Image theWeek;
+    private int width;
+    private int height;
+    private float smallScale;
 
     public ActionMenu(GameData data) {
         initImages();
@@ -55,14 +58,14 @@ public class ActionMenu {
     public void render(GameContainer container, StateBasedGame game, Graphics context) {
         if(this.background != null){
 
-            float width = container.getWidth();
-            float height = container.getHeight();
+            width = container.getWidth();
+            height = container.getHeight();
 
             float b = this.background.getWidth();
             this.scale = width/b ;
             this.background.draw(0,0,this.scale);
 
-            float smallScale = scale/2;
+            smallScale = scale/2;
             int h = (int) height*2/3;
             int step = (int) width/100;
             int w2 = (int) (study.getWidth()*smallScale);
@@ -93,6 +96,32 @@ public class ActionMenu {
 
     public void mousePressed(int button, int x, int y) {
 
+        int h = (int) height*2/3;
+        int step = (int) width/100;
+        int w2 = (int) (study.getWidth()*smallScale);
+        int h2 = (int) (study.getHeight()*smallScale);
+        int w = (int) (width - w2*3 - 2*step) /2;
+        System.out.println("X " + w + "  Y " + h + " scale " + (int)smallScale);
+        if (isClicked(w, h, 153, 112, x, y)) {
+
+            // on a cliqué sur Club
+            System.out.println("CLIC");
+
+        } else if (false) {
+
+            // ...
+
+        } else {
+
+        }
+
+    }
+
+    public boolean isClicked(int x0, int y0, int width, int height, int x, int y) {
+        if (x >= x0 && x < x0+width && y >= y0 && y < y0+height)
+            return true;
+        else
+            return false;
     }
 
 }
