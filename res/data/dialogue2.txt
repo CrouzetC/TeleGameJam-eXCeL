@@ -1,12 +1,11 @@
 "unknown"
- "cours dans la forêt à la recherche de quelque chose*"
+"cours dans la forêt à la recherche de quelque chose*"
 "unknown"
 "supris par le bruit, MC se retourne !*"
 "MC"
 "Quesse passe-t-il ?"
 "unknown"
 " Au-secours ! Je suis victime d un vol."
-
 CHOICE
 3,"Pourquoi dans la foret ?",10 10 10 10 10 10 2,"Oh d accord.",0 0 0 0 0 0 0,"Me voilà ! la situation est sauve !",0 0 0 0 0 0 0
 A
@@ -32,7 +31,7 @@ END
 "Alicia"
 "Je n ai rien à voir avec Alice malgré ce que vous pouvez penser. Sinon comment ça swingue les gars ?"
 CHOICE
-5,"ça swingue pas mal ici",10 10 10 10 10 10 2,"ouais… rien à voir du tout, du tout… ça va pas swinguer mais valser je vous le dis !",0 0 0 0 0 0 0,"bien sûr que ça swingue, Alice !",0 0 0 0 0 0 0,"swinguera bien celui qui swinguera le dernier!",0 0 0 0 0 0 0,"enfin une phrase sans swinguer…",0 0 0 0 0 0 0
+5,"ça swingue pas mal ici",10 10 10 10 10 10 2,"ouais… rien à voir du tout du tout… ça va pas swinguer mais valser je vous le dis !",0 0 0 0 0 0 0,"bien sûr que ça swingue Alice !",0 0 0 0 0 0 0,"swinguera bien celui qui swinguera le dernier!",0 0 0 0 0 0 0,"enfin une phrase sans swinguer…",0 0 0 0 0 0 0
 A
 "Alicia"
 " ah"
@@ -102,4 +101,7 @@ END
 "John"
 "Salut !"
 "MC"
-"Encore une histoire qui finit bien …. au moins Alice a retrouvé la voleuse des bois ? On pourrait dire des îles au vu de son nom… Sacré croco… c est rigolo mais c est pas beau, de voler hein."
+"Encore une histoire qui finit bien …. au moins Alice a retrouvé la voleuse des bois ?"
+"MC"
+"On pourrait dire des îles au vu de son nom… Sacré croco… c est rigolo mais c est pas beau, de voler hein."
+END
