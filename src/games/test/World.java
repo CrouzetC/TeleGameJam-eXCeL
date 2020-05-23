@@ -7,7 +7,6 @@ import games.test.week.ActionMenu;
 import games.test.week.Week;
 import games.test.week.actions.ActionEvent;
 import games.test.week.actions.Dialogue;
-import games.test.week.actions.Sleep;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -58,7 +57,7 @@ public class World extends BasicGameState {
 		for (int i = 0; i < nbWeeks; i++)
 			weeks.add(new Week());
 		currentAction = null;
-		currentAction = new Dialogue(data, "res/data/dialogue1.txt");
+		currentAction = new Dialogue(data, "/data/dialogue1.txt");
 
 		// Player
 		player = new Player();
@@ -73,13 +72,13 @@ public class World extends BasicGameState {
 	public void newWeek() {
 		currentWeek += 1;
 		if (currentWeek == nbWeeks) {
-			player.addProject(new Project("Anglais", player.getUE().get(2), 10,5, new double[]{0.1,0.05,0.05,0.3,0.0,0.5}, "res/images/projets/anglais.png"));
+			player.addProject(new Project("Anglais", player.getUE().get(2), 10,5, new double[]{0.1,0.05,0.05,0.3,0.0,0.5}, "images/projets/anglais.png"));
 		}
 		if (currentWeek <= nbWeeks) {
 			// passage à la semaine suivante
 			actionMenu.reset();
 			actionMenu.setWeek(weeks.get(currentWeek-1));
-			currentAction = new Dialogue(data, String.format("res/data/dialogue"+"%d"+".txt", currentWeek));
+			currentAction = new Dialogue(data, String.format("/data/dialogue"+"%d"+".txt", currentWeek));
 			gameState = 1;
 		} else {
 			// fin du jeu

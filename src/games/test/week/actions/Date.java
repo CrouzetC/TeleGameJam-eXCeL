@@ -8,13 +8,11 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
 
-import java.awt.Font;
-import java.util.concurrent.ThreadLocalRandom;
-
+import app.AppFont;
+import app.AppLoader;
 
 public class Date implements ActionEvent {
 
-    Font awtFont;
     TrueTypeFont font;
     boolean isOver;
     Image image;
@@ -23,11 +21,10 @@ public class Date implements ActionEvent {
     GameData data;
 
     public Date(GameData data) {
-        awtFont = new Font("vt323", Font.BOLD, 12);
-        font = new TrueTypeFont(awtFont, true);
+        font = AppLoader.loadFont("/fonts/vt323.ttf", AppFont.BOLD, 12);
         isOver = false;
         try {
-            image = new Image("res/images/dialogue/corridores.png");
+            image = new Image("images/dialogue/corridores.png");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -12,8 +12,6 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 import app.AppLoader;
 import app.AppPage;
 
-import java.awt.*;
-
 public class Welcome extends AppPage {
 
 	public static int fadeTransitionTime = 200;

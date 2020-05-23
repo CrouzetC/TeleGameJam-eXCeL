@@ -7,8 +7,6 @@ import games.test.week.actions.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
 
-import app.AppLoader;
-
 import java.util.ArrayList;
 
 public class ActionMenu {
@@ -39,7 +37,7 @@ public class ActionMenu {
 
         // song
         try {
-            selection_song = new Sound("res/songs/selection.wav");
+            selection_song = new Sound("songs/selection.wav");
         } catch (Exception e) {
             e.printStackTrace();
         }

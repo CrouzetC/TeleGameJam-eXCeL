@@ -1,8 +1,5 @@
 package games.test.week.actions.dialogue;
 
-import games.test.data.Player;
-import games.test.week.actions.Dialogue;
-
 import java.util.ArrayList;
 
 public class Choice {

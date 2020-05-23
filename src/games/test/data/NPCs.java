@@ -2,11 +2,6 @@ package games.test.data;
 
 import org.newdawn.slick.Image;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class NPCs {
@@ -19,7 +14,7 @@ public class NPCs {
         names = new ArrayList<String>();
         names.add("unknown");
         try {
-            pictures.add(new Image("res/images/characters/unknown.png"));
+            pictures.add(new Image("images/characters/unknown.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -28,7 +23,7 @@ public class NPCs {
     public void addNPC(String name) {
         Image i = null;
         try {
-            i = new Image("res/images/characters/"+name+".png");
+            i = new Image("images/characters/"+name+".png");
         } catch (Exception e) {
             e.printStackTrace();
         }

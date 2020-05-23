@@ -10,14 +10,15 @@ import games.test.week.actions.dialogue.Line;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
 
-import java.awt.Font;
 import java.util.ArrayList;
+
+import app.AppFont;
+import app.AppLoader;
 
 public class Dialogue implements ActionEvent {
 
     // font
     GameData gameData;
-    Font awtFont;
     TrueTypeFont font;
 
     // game
@@ -42,12 +43,11 @@ public class Dialogue implements ActionEvent {
     public Dialogue(GameData gameData, String filename) {
 
         // font
-        awtFont = new Font("vt323", java.awt.Font.BOLD, 12);
-        font = new TrueTypeFont(awtFont, true);
+        font = AppLoader.loadFont("/fonts/vt323.ttf", AppFont.BOLD, 12);
 
         // song
         try {
-            foot_steps = new Sound("res/songs/foot_steps.wav");
+            foot_steps = new Sound("songs/foot_steps.wav");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -70,13 +70,12 @@ public class Dialogue implements ActionEvent {
     public Dialogue() {  // uniquement pour getDialogueDemo
 
         // font
-        awtFont = new Font("vt323", java.awt.Font.BOLD, 12);
-        font = new TrueTypeFont(awtFont, true);
+        font = AppLoader.loadFont("/fonts/vt323.ttf", AppFont.BOLD, 12);
         isOver = false;
 
         // song
         try {
-            foot_steps = new Sound("res/songs/foot_steps.wav");
+            foot_steps = new Sound("songs/foot_steps.wav");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -117,8 +116,7 @@ public class Dialogue implements ActionEvent {
         DialoguePiece dialoguePiece = dialoguePieces.get(current_piece);
 
         // police de caractères
-        awtFont = new Font("vt323", java.awt.Font.BOLD, (int)(0.03*height));
-        font = new TrueTypeFont(awtFont, true);
+        font = AppLoader.loadFont("/fonts/vt323.ttf", AppFont.BOLD, (int)(0.03*height));
 
         // images de fond
         Image bckground = gameData.getPictures().getDialogue_background();

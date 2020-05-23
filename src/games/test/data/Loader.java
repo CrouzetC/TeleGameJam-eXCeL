@@ -6,14 +6,12 @@ import games.test.week.actions.dialogue.Choice;
 import games.test.week.actions.dialogue.Choices;
 import games.test.week.actions.dialogue.DialoguePiece;
 import games.test.week.actions.dialogue.Line;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.state.StateBasedGame;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.StringReader;
+import java.io.BufferedReader;
 import java.util.ArrayList;
-import java.util.stream.Stream;
+
+import app.AppLoader;
 
 public class Loader {
 
@@ -21,11 +19,11 @@ public class Loader {
 
     public static void loadProjects(ArrayList<Project> projects, GameData data, String filename) {
 
-        projects.add(new Project("Compil", data.getUE("STIC"), 30, 10, new double[]{0.3, 0.3, 0, 0, 0.3, 0.1}, "res/images/projets/compil-sama.png"));
-        projects.add(new Project("PIDR", data.getUE("SFA"), 20, 14, new double[]{0.1,0.2,0.2,0.2,0.2,0.1}, "res/images/projets/pidr-chan.png"));
-        projects.add(new Project("Anglais", data.getUE("SEHS"), 15, 14, new double[]{0.1,0.2,0.2,0.2,0.2,0.1}, "res/images/projets/anglais.png"));
-        projects.add(new Project("P2I", data.getUE("SFA"), 15, 14, new double[]{0.1,0.2,0.2,0.2,0.2,0.1}, "res/images/projets/p2i-kohai.png"));
-        projects.add(new Project("PI", data.getUE("SFA"), 30, 14, new double[]{0.1,0.2,0.2,0.2,0.2,0.1}, "res/images/projets/pi-senpai.png"));
+        projects.add(new Project("Compil", data.getUE("STIC"), 30, 10, new double[]{0.3, 0.3, 0, 0, 0.3, 0.1}, "images/projets/compil-sama.png"));
+        projects.add(new Project("PIDR", data.getUE("SFA"), 20, 14, new double[]{0.1,0.2,0.2,0.2,0.2,0.1}, "images/projets/pidr-chan.png"));
+        projects.add(new Project("Anglais", data.getUE("SEHS"), 15, 14, new double[]{0.1,0.2,0.2,0.2,0.2,0.1}, "images/projets/anglais.png"));
+        projects.add(new Project("P2I", data.getUE("SFA"), 15, 14, new double[]{0.1,0.2,0.2,0.2,0.2,0.1}, "images/projets/p2i-kohai.png"));
+        projects.add(new Project("PI", data.getUE("SFA"), 30, 14, new double[]{0.1,0.2,0.2,0.2,0.2,0.1}, "images/projets/pi-senpai.png"));
 
     }
 
@@ -35,7 +33,7 @@ public class Loader {
 
         for (int i = 0; i < nb_dialogues; i++) {
             // filename
-            String dialogueFile = "res/data/dialogue"+(1+i)+".txt";
+            String dialogueFile = "/data/dialogue"+(1+i)+".txt";
             // creation of action
             actions.add(new Dialogue(data, dialogueFile));
         }
@@ -45,8 +43,13 @@ public class Loader {
     public static void loadNPCs(NPCs npcs) {
 
         ArrayList<String> names = new ArrayList<String>();
-        try (Stream<String> stream = Files.lines(Paths.get("res/data/NPC_names.txt"))) {
-            stream.forEach(names::add);
+        try {
+            BufferedReader reader = new BufferedReader(new StringReader(AppLoader.loadData("/data/NPC_names.txt")));
+            String name;
+            while ((name = reader.readLine()) != null) {
+                names.add(name);
+            }
+            reader.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -60,8 +63,13 @@ public class Loader {
     public static void loadDialogue(Dialogue d, String filename) {
 
         ArrayList<String> lines = new ArrayList<String>();
-        try (Stream<String> stream = Files.lines(Paths.get(filename))) {
-            stream.forEach(lines::add);
+        try {
+            BufferedReader reader = new BufferedReader(new StringReader(AppLoader.loadData(filename)));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lines.add(line);
+            }
+            reader.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
