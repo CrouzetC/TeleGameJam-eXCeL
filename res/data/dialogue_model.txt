@@ -1,0 +1,36 @@
+"[interlocuteur (ou MC pour le joueur)]"
+"[phrase]"
+"[interlocuteur]"
+"[phrase]"
+"[interlocuteur]"
+"[phrase]"
+CHOICE
+[Nombre de choix],"[phrase A]",[effets sur les stats (et sur les projets)],"[phrase B]",0 0 0 0 0 0 0,"[phrase C]",0 0 0 0 0 0 0
+A
+"[interlocuteur]"
+"[phrase]"
+B
+"[interlocuteur]"
+"[phrase]"
+"[interlocuteur]"
+"[phrase]"
+C
+"[interlocuteur]"
+"[phrase]"
+END
+"[interlocuteur]"
+"[phrase]"
+"[interlocuteur]"
+"[phrase]"
+CHOICE
+[Nombre de choix],"[phrase A]",10 10 10 10 10 10 2,"[phrase B]",0 0 0 0 0 0 0
+A
+"[interlocuteur]"
+"[phrase]"
+B
+"[interlocuteur]"
+"[phrase]"
+END
+"[interlocuteur]"
+"[phrase]"
+END

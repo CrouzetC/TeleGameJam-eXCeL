@@ -1,38 +1,47 @@
-"[nom de l'interlocuteur (MC si perso principal)]"
-"[phrase prononcée]"
-"Maria"
+"Alice"
+"kachaw"
+"Alice"
 "Hello"
-"Maria"
+"Alice"
 "World"
 CHOICE
 3,"[phrase A]",10 10 10 10 10 10 2,"[phrase B]",0 0 0 0 0 0 0,"[phrase C]",0 0 0 0 0 0 0
 A
-"[interlocuteur]"
+"John"
 "[phrase]"
 B
-"[interlocuteur]"
+"Archibald"
 "[phrase]"
 "Alice"
 "hohoho"
-"[interlocuteur]"
+"Archibald"
 "[phrase]"
 C
-"[interlocuteur]"
+"Archibald"
 "[phrase]"
+CHOICE
+2,"[phrase A]",10 10 10 10 10 10 2,"[phrase B]",0 0 0 0 0 0 0,"[phrase C]",0 0 0 0 0 0 0
+A
+"John"
+"HO"
+B
+"John"
+"HA"
+END
 END
 "Alice"
 "A"
-"Bob"
+"Archibald"
 "B"
 CHOICE
 2,"[phrase A]",10 10 10 10 10 10 2,"[phrase B]",0 0 0 0 0 0 0
 A
-"[interlocuteur]"
+"John"
 "[phrase]"
 B
-"[interlocuteur]"
+"Alice"
 "[phrase]"
 END
-"Maria"
+"Alice"
 "Aurevoir"
 END

@@ -17,6 +17,12 @@ public class NPCs {
     public NPCs() {
         pictures = new ArrayList<Image>();
         names = new ArrayList<String>();
+        names.add("unknown");
+        try {
+            pictures.add(new Image("res/images/characters/unknown.png"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void addNPC(String name) {
