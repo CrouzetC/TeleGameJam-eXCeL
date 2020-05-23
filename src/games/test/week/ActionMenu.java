@@ -101,7 +101,7 @@ public class ActionMenu {
         int w2 = (int) (study.getWidth()*smallScale);
         int h2 = (int) (study.getHeight()*smallScale);
         int w = (int) (width - w2*3 - 2*step) /2;
-        System.out.println("X " + w + "  Y " + h + " scale " + (int)smallScale);
+        
         if (isClicked(w, h, 153, 112, x, y)) {
 
             // on a cliqué sur Club
