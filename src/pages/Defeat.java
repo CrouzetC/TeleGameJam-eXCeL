@@ -2,10 +2,7 @@ package pages;
 
 import app.AppMenu;
 import app.elements.MenuItem;
-import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Music;
-import org.newdawn.slick.SlickException;
+import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
@@ -34,11 +31,19 @@ public class Defeat extends AppMenu {
         this.setMenu(Arrays.asList(new MenuItem[] {
                 new MenuItem("Quitter") {
                     public void itemSelected() {
-                        game.enterState(1, new FadeOutTransition(Color.black,Welcome.fadeTransitionTime), new FadeInTransition(Color.black,Welcome.fadeTransitionTime));
-                    }
+                        }
                 }
         }));
         this.setHint("Allez, ouste !");
+    }
+
+    @Override
+    public void update(GameContainer container, StateBasedGame game, int  delta) {
+        super.update(container, game, delta);
+        Input input = container.getInput();
+        if (input.isKeyDown(Input.KEY_ENTER)) {
+            container.exit();
+        }
     }
 
     @Override
