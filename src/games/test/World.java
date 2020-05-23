@@ -62,7 +62,7 @@ public class World extends BasicGameState {
 
 	public void newWeek() {
 		currentWeek += 1;
-		if (currentWeek < nbWeeks) {
+		if (currentWeek <= nbWeeks) {
 			// passage à la semaine suivante
 			actionMenu.reset();
 			actionMenu.setWeek(weeks.get(currentWeek));
