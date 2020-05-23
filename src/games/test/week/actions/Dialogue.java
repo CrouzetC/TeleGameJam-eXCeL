@@ -68,10 +68,8 @@ public class Dialogue implements ActionEvent {
 
     public void render(GameContainer container, StateBasedGame game, Graphics context) {
 
-        float bgWidth = this.background.getWidth();
         int width = container.getWidth();
         int height = container.getHeight();
-        float scale = bgWidth/width ;
         DialoguePiece dialoguePiece = dialoguePieces.get(current_piece);
 
         // font
@@ -80,6 +78,9 @@ public class Dialogue implements ActionEvent {
 
         // images de fond
         Image bckground = gameData.getPictures().getDialogue_background();
+        float bgWidth = bckground.getWidth();
+        float scale = bgWidth/width ;
+
         bckground.draw(0, 0, width, height);
         Image text_bckground = gameData.getPictures().getText_field_image();
         text_bckground.draw(0, (int)(0.8*height), width, (int)(0.2*height));

@@ -2,6 +2,7 @@ package games.test.week;
 
 
 import games.test.data.GameData;
+import games.test.week.actions.*;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
@@ -109,24 +110,47 @@ public class ActionMenu {
         int h2 = (int) (study.getHeight()*smallScale);
         int w = (int) (width - w2*3 - 2*step) /2;
 
-        if (isClicked(w, h, 153, 112, x, y)) {
+        if (isClicked(w, h,w2, h2, x, y)) {
 
             // on a cliqué sur Club
-            System.out.println("CLIC");
+            System.out.println("CLIC club");
+            ActionEvent action = new Clubs();
+            System.out.println(""+current_day);
+            week.setActionofDayIndex(current_day,action);
 
             current_day ++;
 
-        } else if (false) {
+        } else if (isClicked(w+w2+step, h,w2, h2, x, y)) {
+            // Socialize
+            System.out.println("CLIC social");
 
-            // ...
-
-            current_day ++;
-
-        } else if (false) {
-
-            // ...
+            ActionEvent action = new Socialize();
+            week.setActionofDayIndex(current_day,action);
 
             current_day ++;
+
+        } else if (isClicked(w+2*w2+2*step, h,w2, h2, x, y)) {
+            // Study
+            System.out.println("CLIC study");
+
+            ActionEvent action = new Study();
+            week.setActionofDayIndex(current_day,action);
+
+            current_day++;
+        }else if (isClicked(w,h+h2+step,w2,h2,x,y)) {
+            // Sleep
+            System.out.println("CLIC sleep");
+
+            ActionEvent action = new Sleep();
+            week.setActionofDayIndex(current_day,action);
+
+            current_day++;
+        }else if(isClicked(w+w2+step,h+h2+step,w2,h2,x,y)){
+            // Date Time
+            System.out.println("CLIC date time not implemented yet");
+
+//            ActionEvent action = new Date();
+//            week.setActionofDayIndex(current_day,action);
 
         } else {
 

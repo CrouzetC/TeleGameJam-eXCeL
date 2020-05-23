@@ -53,6 +53,8 @@ public class World extends BasicGameState {
 		currentAction = null;
 		currentAction = new Dialogue(data, "res/data/dialogue1.txt");
 
+		//actionMenu.setWeek(weeks.get(currentWeek));
+
 		// start a new week
 		newWeek();
 	}
@@ -62,6 +64,7 @@ public class World extends BasicGameState {
 		if (currentWeek < nbWeeks) {
 			// passage à la semaine suivante
 			actionMenu.reset();
+			actionMenu.setWeek(weeks.get(currentWeek));
 			gameState = 1;
 		} else {
 			// fin du jeu
