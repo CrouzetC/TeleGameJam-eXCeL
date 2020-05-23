@@ -24,7 +24,7 @@ public class Dialogue implements ActionEvent {
     boolean isOver;
 
     // song
-    Music foot_steps;
+    Sound foot_steps;
 
     // dialogue pieces
     private ArrayList<DialoguePiece> dialoguePieces;
@@ -47,7 +47,7 @@ public class Dialogue implements ActionEvent {
 
         // song
         try {
-            foot_steps = new Music("res/song/foot_steps.mp3");
+            foot_steps = new Sound("res/songs/foot_steps.wav");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -76,7 +76,7 @@ public class Dialogue implements ActionEvent {
 
         // song
         try {
-            foot_steps = new Music("res/song/foot_steps.mp3");
+            foot_steps = new Sound("res/songs/foot_steps.wav");
         } catch (Exception e) {
             e.printStackTrace();
         }
