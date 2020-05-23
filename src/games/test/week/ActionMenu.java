@@ -7,8 +7,6 @@ import games.test.week.actions.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
 
-import app.AppLoader;
-
 import java.util.ArrayList;
 
 public class ActionMenu {

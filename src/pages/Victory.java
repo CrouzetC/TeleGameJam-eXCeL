@@ -4,8 +4,6 @@ import app.AppMenu;
 import app.elements.MenuItem;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.state.transition.FadeInTransition;
-import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import java.util.Arrays;
 
@@ -16,7 +14,7 @@ public class Victory extends AppMenu {
     public Victory(int ID) {
         super(ID);
         try {
-            this.music = new Music("res/musics/Phillip_Gross_-_03_-_Optimistic_Bits.ogg");
+            this.music = new Music("musics/Phillip_Gross_-_03_-_Optimistic_Bits.ogg");
         } catch (SlickException e) {
             e.printStackTrace();
         }

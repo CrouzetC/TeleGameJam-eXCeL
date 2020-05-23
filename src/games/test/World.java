@@ -7,7 +7,6 @@ import games.test.week.ActionMenu;
 import games.test.week.Week;
 import games.test.week.actions.ActionEvent;
 import games.test.week.actions.Dialogue;
-import games.test.week.actions.Sleep;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -78,7 +77,7 @@ public class World extends BasicGameState {
 			// passage à la semaine suivante
 			actionMenu.reset();
 			actionMenu.setWeek(weeks.get(currentWeek-1));
-			currentAction = new Dialogue(data, String.format("data/dialogue"+"%d"+".txt", currentWeek));
+			currentAction = new Dialogue(data, String.format("/data/dialogue"+"%d"+".txt", currentWeek));
 			gameState = 1;
 		} else {
 			// fin du jeu

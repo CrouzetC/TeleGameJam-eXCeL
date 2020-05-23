@@ -30,8 +30,8 @@ public class Project {
     	this.statCriteria = stats;
 		try {
 			this.icon = new Image(file);
-			this.whiteHeart = new Image("res/images/white_heart.png");
-			this.redHeart = new Image("res/images/red_heart.png");
+			this.whiteHeart = new Image("images/white_heart.png");
+			this.redHeart = new Image("images/red_heart.png");
 			this.activeHeart = whiteHeart;
 		} catch (SlickException e) {
 			e.printStackTrace();

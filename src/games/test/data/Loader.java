@@ -7,14 +7,12 @@ import games.test.week.actions.dialogue.Choice;
 import games.test.week.actions.dialogue.Choices;
 import games.test.week.actions.dialogue.DialoguePiece;
 import games.test.week.actions.dialogue.Line;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.state.StateBasedGame;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.StringReader;
+import java.io.BufferedReader;
 import java.util.ArrayList;
-import java.util.stream.Stream;
+
+import app.AppLoader;
 
 public class Loader {
 
@@ -36,7 +34,8 @@ public class Loader {
 
         for (int i = 0; i < nb_dialogues; i++) {
             // filename
-            String dialogueFile = "data/dialogue"+(1+i)+".txt";
+            String dialogueFile = "/data/dialogue"+(1+i)+".txt";
+
             // creation of action
             actions.add(new Dialogue(data, dialogueFile));
         }
@@ -46,10 +45,16 @@ public class Loader {
     public static void loadNPCs(NPCs npcs) {
 
         ArrayList<String> names = new ArrayList<String>();
-
-        String str = AppLoader.loadData("data/NPC_names.txt");
-        System.out.println("AAAAAAAA "+str);
-
+        try {
+            BufferedReader reader = new BufferedReader(new StringReader(AppLoader.loadData("/data/NPC_names.txt")));
+            String name;
+            while ((name = reader.readLine()) != null) {
+                names.add(name);
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         for (String name : names) {
             npcs.addNPC(name);
@@ -60,9 +65,17 @@ public class Loader {
     public static void loadDialogue(Dialogue d, String filename) {
 
         ArrayList<String> lines = new ArrayList<String>();
-        String[] str = AppLoader.loadData(filename).split("\n");
-        for (int i = 0; i < str.length; i++)
-            lines.add(str[i]);
+
+        try {
+            BufferedReader reader = new BufferedReader(new StringReader(AppLoader.loadData(filename)));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lines.add(line);
+            }
+            reader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         ArrayList<DialoguePiece> pieces = d.getDialoguePieces();
         int index = 0;

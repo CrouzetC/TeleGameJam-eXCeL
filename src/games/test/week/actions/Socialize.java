@@ -1,11 +1,11 @@
 package games.test.week.actions;
 
-import java.awt.Font;
-
 import org.newdawn.slick.*;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.StateBasedGame;
 
+import app.AppFont;
+import app.AppLoader;
 
 public class Socialize implements ActionEvent {
 
@@ -15,8 +15,7 @@ public class Socialize implements ActionEvent {
     Image image;
 
     public Socialize() {
-        awtFont = new Font("vt323", java.awt.Font.BOLD, 12);
-        font = new TrueTypeFont(awtFont, true);
+        font = AppLoader.loadFont("/fonts/vt323.ttf", AppFont.BOLD, 12);
         isOver = false;
         try {
             image = new Image("images/dialogue/socializing.png");

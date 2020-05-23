@@ -6,6 +6,8 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.StateBasedGame;
 
+import app.AppFont;
+import app.AppLoader;
 
 public class Clubs implements ActionEvent {
 
@@ -15,8 +17,7 @@ public class Clubs implements ActionEvent {
     Image image;
 
     public Clubs() {
-        awtFont = new Font("vt323", java.awt.Font.BOLD, 12);
-        font = new TrueTypeFont(awtFont, true);
+        font = AppLoader.loadFont("/fonts/vt323.ttf", AppFont.BOLD, 12);
         isOver = false;
         try {
             image = new Image("images/dialogue/clubing.png");

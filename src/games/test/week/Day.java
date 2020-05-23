@@ -2,8 +2,6 @@ package games.test.week;
 
 import games.test.week.actions.ActionEvent;
 
-import java.util.ArrayList;
-
 public class Day {
 
     ActionEvent action;
