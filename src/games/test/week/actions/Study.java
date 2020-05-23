@@ -19,7 +19,7 @@ public class Study implements ActionEvent {
         font = new TrueTypeFont(awtFont, true);
         isOver = false;
         try {
-            image = new Image("res/images/dialogue/studying.png");
+            image = new Image("images/dialogue/studying.png");
         } catch (Exception e) {
             e.printStackTrace();
         }

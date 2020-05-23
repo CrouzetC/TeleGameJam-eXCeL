@@ -36,10 +36,11 @@ public class ActionMenu {
     public ActionMenu(GameData data) {
         initImages();
         isOver = false;
+        this.data = data;
 
         // song
         try {
-            selection_song = new Sound("res/songs/selection.wav");
+            selection_song = new Sound("songs/selection.wav");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -82,16 +83,14 @@ public class ActionMenu {
             height = container.getHeight();
 
             // Affichage des projets
-            if ( data != null) {
-                ArrayList<Project> projects = data.getPlayer().getProjects();
-                int nb_projets = projects.size();
-                int icon_width = (int)(0.1*width);
-                int spacing = (int)(0.03*width);
-                int x0 = width / 2 - (nb_projets*(icon_width+spacing) - spacing) / 2;
-                for (int i = 0; i < nb_projets; i++) {
-                    projects.get(i).getIcon().draw(x0 + i*(icon_width+spacing), 0, icon_width, icon_width);
-                    projects.get(i).getActiveHeart().draw(x0 + i*(icon_width+spacing) + (int)(0.01*width), (int)(1.1*icon_width), spacing, spacing);
-                }
+            ArrayList<Project> projects = data.getPlayer().getProjects();
+            int nb_projets = projects.size();
+            int icon_width = (int)(0.1*width);
+            int spacing = (int)(0.03*width);
+            int x0 = width / 2 - (nb_projets*(icon_width+spacing) - spacing) / 2;
+            for (int i = 0; i < nb_projets; i++) {
+                projects.get(i).getIcon().draw(x0 + i*(icon_width+spacing), 0, icon_width, icon_width);
+                projects.get(i).getActiveHeart().draw(x0 + i*(icon_width+spacing) + (int)(0.01*width), (int)(1.1*icon_width), spacing, spacing);
             }
 
             // Affichage des icones (jours de la semaine, boutons)

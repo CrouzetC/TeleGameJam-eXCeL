@@ -58,7 +58,6 @@ public class World extends BasicGameState {
 		for (int i = 0; i < nbWeeks; i++)
 			weeks.add(new Week());
 		currentAction = null;
-		currentAction = new Dialogue(data, "res/data/dialogue1.txt");
 
 		// Player
 		player = new Player();
@@ -73,7 +72,7 @@ public class World extends BasicGameState {
 	public void newWeek() {
 		currentWeek += 1;
 		if (currentWeek == nbWeeks) {
-			player.addProject(new Project("Anglais", player.getUE().get(2), 10,5, new double[]{0.1,0.05,0.05,0.3,0.0,0.5}, "res/images/projets/anglais.png"));
+			player.addProject(new Project("Anglais", player.getUE().get(2), 10,5, new double[]{0.1,0.05,0.05,0.3,0.0,0.5}, "images/projets/anglais.png"));
 		}
 		if (currentWeek <= nbWeeks) {
 			// passage à la semaine suivante

@@ -19,7 +19,7 @@ public class Sleep implements ActionEvent {
         font = new TrueTypeFont(awtFont, true);
         isOver = false;
         try {
-            image = new Image("res/images/dialogue/sleeping.png");
+            image = new Image("images/dialogue/sleeping.png");
         } catch (Exception e) {
             e.printStackTrace();
         }

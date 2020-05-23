@@ -27,7 +27,7 @@ public class Date implements ActionEvent {
         font = new TrueTypeFont(awtFont, true);
         isOver = false;
         try {
-            image = new Image("res/images/dialogue/corridores.png");
+            image = new Image("images/dialogue/corridores.png");
         } catch (Exception e) {
             e.printStackTrace();
         }

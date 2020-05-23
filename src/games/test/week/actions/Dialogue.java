@@ -47,7 +47,7 @@ public class Dialogue implements ActionEvent {
 
         // song
         try {
-            foot_steps = new Sound("res/songs/foot_steps.wav");
+            foot_steps = new Sound("songs/foot_steps.wav");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -76,7 +76,7 @@ public class Dialogue implements ActionEvent {
 
         // song
         try {
-            foot_steps = new Sound("res/songs/foot_steps.wav");
+            foot_steps = new Sound("songs/foot_steps.wav");
         } catch (Exception e) {
             e.printStackTrace();
         }

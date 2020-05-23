@@ -19,7 +19,7 @@ public class Clubs implements ActionEvent {
         font = new TrueTypeFont(awtFont, true);
         isOver = false;
         try {
-            image = new Image("res/images/dialogue/clubing.png");
+            image = new Image("images/dialogue/clubing.png");
         } catch (Exception e) {
             e.printStackTrace();
         }
