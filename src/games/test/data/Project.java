@@ -8,22 +8,26 @@ public class Project {
 	private String name;
 	private UE ue;
 	private int nbPoints;
+	private int threshold;
 	private int qtyWork;
 	private int workedDays;
 	private int progression;
+	private double[] statCriteria;
 
 	private Image icon;
 	private static Image whiteHeart, redHeart;
 	private Image activeHeart;
 	
 	
-    public Project(String name, UE ue, int w, String file) {
+    public Project(String name, UE ue, int t, int w, double[] stats, String file) {
     	this.name = name;
     	this.ue = ue;
-    	this.nbPoints = 0;
+        this.threshold = t;
+        this.nbPoints = 0;
     	this.qtyWork = w;   // In days
         this.workedDays = 0;
     	this.progression = 0;
+    	this.statCriteria = stats;
 		try {
 			this.icon = new Image(file);
 			this.whiteHeart = new Image("res/images/white_heart.png");
@@ -58,7 +62,15 @@ public class Project {
 		this.nbPoints = nbPoints;
 	}
 
-	public int getQtyWork() {
+    public int getThreshold() {
+        return threshold;
+    }
+
+    public void setThreshold(int threshold) {
+        this.threshold = threshold;
+    }
+
+    public int getQtyWork() {
 		return qtyWork;
 	}
 
@@ -88,6 +100,14 @@ public class Project {
 		}
 	}
 
+	// Harmoniser pour que ce soit au pire des vecteurs stochastiques
+    public double[] getStatCriteria() {
+        // Met en avant les statistiques du joueur les plus importantes de la matiere
+        return statCriteria;
+    }
 
+    public void setStatCriteria(double[] statCriteria) {
+        this.statCriteria = statCriteria;
+    }
 
 }
