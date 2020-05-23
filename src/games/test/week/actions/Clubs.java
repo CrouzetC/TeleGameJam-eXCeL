@@ -17,7 +17,7 @@ public class Clubs implements ActionEvent {
     Image image;
 
     public Clubs() {
-        font = AppLoader.loadFont("/fonts/vt323.ttf", AppFont.BOLD, 12);
+        font = AppLoader.loadFont(null, AppFont.BOLD, 12);
         isOver = false;
         try {
             image = new Image("images/dialogue/clubing.png");
