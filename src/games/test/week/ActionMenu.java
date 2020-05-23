@@ -5,6 +5,7 @@ import games.test.data.GameData;
 import games.test.week.actions.*;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.Image;
 
@@ -29,10 +30,19 @@ public class ActionMenu {
     private float smallScale;
     private boolean isOver;
     private int current_day;
+    // song
+    Music selection_song;
 
     public ActionMenu(GameData data) {
         initImages();
         isOver = false;
+
+        // song
+        try {
+            selection_song = new Music("res/song/selection.mp3");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void initImages() {
