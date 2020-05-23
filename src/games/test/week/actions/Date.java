@@ -21,7 +21,7 @@ public class Date implements ActionEvent {
     GameData data;
 
     public Date(GameData data) {
-        font = AppLoader.loadFont("/fonts/vt323.ttf", AppFont.BOLD, 12);
+        font = AppLoader.loadFont(null, AppFont.BOLD, 12);
         isOver = false;
         try {
             image = new Image("images/dialogue/corridores.png");

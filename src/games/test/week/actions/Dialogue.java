@@ -43,7 +43,7 @@ public class Dialogue implements ActionEvent {
     public Dialogue(GameData gameData, String filename) {
 
         // font
-        font = AppLoader.loadFont("/fonts/vt323.ttf", AppFont.BOLD, 12);
+        font = AppLoader.loadFont(null, AppFont.BOLD, 12);
 
         // song
         try {
@@ -70,7 +70,7 @@ public class Dialogue implements ActionEvent {
     public Dialogue() {  // uniquement pour getDialogueDemo
 
         // font
-        font = AppLoader.loadFont("/fonts/vt323.ttf", AppFont.BOLD, 12);
+        font = AppLoader.loadFont(null, AppFont.BOLD, 12);
         isOver = false;
 
         // song
@@ -116,7 +116,7 @@ public class Dialogue implements ActionEvent {
         DialoguePiece dialoguePiece = dialoguePieces.get(current_piece);
 
         // police de caractères
-        font = AppLoader.loadFont("/fonts/vt323.ttf", AppFont.BOLD, (int)(0.03*height));
+        font = AppLoader.loadFont(null, AppFont.BOLD, (int)(0.03*height));
 
         // images de fond
         Image bckground = gameData.getPictures().getDialogue_background();
