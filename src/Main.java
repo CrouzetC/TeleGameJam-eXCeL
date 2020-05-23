@@ -54,6 +54,8 @@ public final class Main {
 				this.addState(new pages.Pause(2));
 				this.addState(new games.test.World(3));
 				this.addState(new pages.NewGame(4));
+				this.addState(new pages.Defeat(5));
+				this.addState(new pages.Victory(6));
 			}
 
 		};
