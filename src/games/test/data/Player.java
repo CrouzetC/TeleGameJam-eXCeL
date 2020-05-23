@@ -26,7 +26,7 @@ public class Player {
         this.name = name;
         for (int i = 0; i < nb_stats; i++)
             statistics[i] = 30;
-        this.projects = new ArrayList<>();
+        this.projects = new ArrayList<Project>();
         this.ue = new ArrayList<>();
         this.ue.add(new UE("SFA", 20));
         this.ue.add(new UE("STIC", 30));

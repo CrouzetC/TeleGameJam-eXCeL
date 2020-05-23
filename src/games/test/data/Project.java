@@ -38,6 +38,10 @@ public class Project {
 		}
 	}
 
+	public Image getActiveHeart() { return activeHeart; }
+
+	public Image getIcon() { return icon; }
+
 	public String getName() {
 		return name;
 	}
@@ -91,9 +95,21 @@ public class Project {
 	}
 
 	public void setProgression(int progression) {
-    	// Mettre a jour le coeur en fonction de la progression
+		// Mettre a jour le coeur en fonction de la progression
 		this.progression = progression;
-		if (this.progression == 100) {
+		if (this.progression >= 100) {
+			this.progression = 100;
+			this.activeHeart = redHeart;
+		} else {
+			this.activeHeart = whiteHeart;
+		}
+	}
+
+	public void addProgression(int added_progression) {
+    	// Mettre a jour le coeur en fonction de la progression
+		this.progression += progression;
+		if (this.progression >= 100) {
+			this.progression = 100;
 			this.activeHeart = redHeart;
 		} else {
 			this.activeHeart = whiteHeart;

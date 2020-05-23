@@ -19,8 +19,13 @@ public class Loader {
 
     public static int nb_dialogues = 1;
 
-    public static void loadProjects(ArrayList<Project> projects, String filename) {
+    public static void loadProjects(ArrayList<Project> projects, GameData data, String filename) {
 
+        projects.add(new Project("Compil", data.getUE("STIC"), 30, 10, new double[]{0.3, 0.3, 0, 0, 0.3, 0.1}, "res/images/projets/compil-sama.png"));
+        projects.add(new Project("PIDR", data.getUE("SFA"), 20, 14, new double[]{0.1,0.2,0.2,0.2,0.2,0.1}, "res/images/projets/pidr-chan.png"));
+        projects.add(new Project("Anglais", data.getUE("SEHS"), 15, 14, new double[]{0.1,0.2,0.2,0.2,0.2,0.1}, "res/images/projets/anglais.png"));
+        projects.add(new Project("P2I", data.getUE("SFA"), 15, 14, new double[]{0.1,0.2,0.2,0.2,0.2,0.1}, "res/images/projets/p2i-kohai.png"));
+        projects.add(new Project("PI", data.getUE("SFA"), 30, 14, new double[]{0.1,0.2,0.2,0.2,0.2,0.1}, "res/images/projets/pi-senpai.png"));
 
     }
 
@@ -65,7 +70,6 @@ public class Loader {
         int index = 0;
         index = analyseDialogue(pieces, lines, index);
 
-        System.out.println(d.getDialoguePieces().size());
     }
 
     public static int analyseDialogue(ArrayList<DialoguePiece> pieces, ArrayList<String> lines, int index) {

@@ -1,13 +1,13 @@
 "unknown"
-"cours dans la forêt à la recherche de quelque chose*"
+"*cours dans la forêt à la recherche de quelque chose*"
 "unknown"
-"supris par le bruit, MC se retourne !*"
+"*supris par le bruit, MC se retourne !*"
 "MC"
 "Quesse passe-t-il ?"
 "unknown"
 " Au-secours ! Je suis victime d un vol."
 CHOICE
-3,"Pourquoi dans la foret ?",10 10 10 10 10 10 2,"Oh d accord.",0 0 0 0 0 0 0,"Me voilà ! la situation est sauve !",0 0 0 0 0 0 0
+3,"Pourquoi dans la foret ?",10 10 10 10 10 50 2,"Oh d accord.",0 0 0 0 0 0 100,"Me voilà ! la situation est sauve !",0 0 0 0 0 0 0
 A
 "MC"
 "Après avoir mieux ouvert les yeux MC reconnait l inconnu …"

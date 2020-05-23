@@ -5,7 +5,7 @@
 "Alicia"
 "World"
 CHOICE
-3,"[phrase A]",10 10 10 10 10 10 2,"[phrase B]",0 0 0 0 0 0 0,"[phrase C]",0 0 0 0 0 0 0
+3,"[phrase A]",10 10 10 10 10 10 50,"[phrase B]",0 0 0 0 0 0 100,"[phrase C]",0 0 0 0 0 0 100
 A
 "Marcus"
 "[phrase]"
@@ -20,7 +20,7 @@ C
 "Shizuku"
 "[phrase]"
 CHOICE
-2,"[phrase A]",10 10 10 10 10 10 2,"[phrase B]",0 0 0 0 0 0 0,"[phrase C]",0 0 0 0 0 0 0
+2,"[phrase A]",10 10 10 10 10 10 50,"[phrase B]",0 0 0 0 0 0 0,"[phrase C]",0 0 0 0 0 0 0
 A
 "Marcus"
 "HO"
@@ -34,7 +34,7 @@ END
 "Shizuku"
 "B"
 CHOICE
-2,"[phrase A]",10 10 10 10 10 10 2,"[phrase B]",0 0 0 0 0 0 0
+2,"[phrase A]",10 10 10 10 10 10 50,"[phrase B]",0 0 0 0 0 0 0
 A
 "Marcus"
 "[phrase]"

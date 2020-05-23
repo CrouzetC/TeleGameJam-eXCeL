@@ -2,11 +2,14 @@ package games.test.week;
 
 
 import games.test.data.GameData;
+import games.test.data.Project;
 import games.test.week.actions.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
 
 import app.AppLoader;
+
+import java.util.ArrayList;
 
 public class ActionMenu {
 
@@ -74,8 +77,24 @@ public class ActionMenu {
     public void render(GameContainer container, StateBasedGame game, Graphics context) {
         if(this.background != null){
 
+            // taille de la fenêtre
             width = container.getWidth();
             height = container.getHeight();
+
+            // Affichage des projets
+            if ( data != null) {
+                ArrayList<Project> projects = data.getPlayer().getProjects();
+                int nb_projets = projects.size();
+                int icon_width = (int)(0.1*width);
+                int spacing = (int)(0.03*width);
+                int x0 = width / 2 - (nb_projets*(icon_width+spacing) - spacing) / 2;
+                for (int i = 0; i < nb_projets; i++) {
+                    projects.get(i).getIcon().draw(x0 + i*(icon_width+spacing), 0, icon_width, icon_width);
+                    projects.get(i).getActiveHeart().draw(x0 + i*(icon_width+spacing) + (int)(0.01*width), (int)(1.1*icon_width), spacing, spacing);
+                }
+            }
+
+            // Affichage des icones (jours de la semaine, boutons)
 
             float b = this.background.getWidth();
             this.scale = width/b ;
@@ -155,7 +174,7 @@ public class ActionMenu {
 
         }else if(isClicked(w+w2+step,h+h2+step,w2,h2,x,y)){
                 // Date Time
-                System.out.println("CLIC date time not implemented yet");
+                System.out.println("CLIC date time not implemented");
 
 //            ActionEvent action = new Date();
 //            week.setActionofDayIndex(current_day,action);

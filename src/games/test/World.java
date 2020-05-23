@@ -44,8 +44,6 @@ public class World extends BasicGameState {
 
 	public World(int ID) {
 
-		System.out.println("Working Directory = " + System.getProperty("user.dir"));
-
 		// basic
 		this.ID = ID;
 		this.state = 0;
@@ -64,9 +62,8 @@ public class World extends BasicGameState {
 
 		// Player
 		player = new Player();
-		player.addProject(new Project("Compil", player.getUE().get(1), 30, 10, (new double[]{0.3, 0.3, 0, 0, 0.3, 0.1}), "res/images/projets/compil-sama.png"));
-		player.addProject(new Project("PIDR", player.getUE().get(0), 20, 14, new double[]{0.1,0.2,0.2,0.2,0.2,0.1}, "res/images/projets/pidr-chan.png"));
 		//actionMenu.setWeek(weeks.get(currentWeek));
+		player.addProject(data.attributeRandomProject()); // attribution d'un projet initial au Player
 
 		// start a new week
 		newWeek();

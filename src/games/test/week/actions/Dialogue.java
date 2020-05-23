@@ -129,7 +129,7 @@ public class Dialogue implements ActionEvent {
 
         // affichage des NPC qui parlent
         if (dialoguePieces.get(current_piece) instanceof Line) {
-            if (lastNPCName.equals("MC") == false && lastNPCName.equals("unknown") == false) {
+            if (lastNPCName.equals("MC") == false) {
 
                 Image image = gameData.getCharacters().getNPCPicture(lastNPCName);
 
@@ -227,7 +227,9 @@ public class Dialogue implements ActionEvent {
                 }
                 // avancement du projet
                 int project_advancement = effects[Player.nb_stats];
-                // TODO !!!!
+                for (int i = 0; i < gameData.getPlayer().getProjects().size(); i++) {
+                    gameData.getPlayer().getProjects().get(i).addProgression(project_advancement);
+                }
 
                 // on insère les prochains éléments de dialogue
                 ArrayList<DialoguePiece> followingPieces = choice.getFollowingDialoguePieces();
