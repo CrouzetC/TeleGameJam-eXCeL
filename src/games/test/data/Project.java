@@ -9,6 +9,7 @@ public class Project {
 	private UE ue;
 	private int nbPoints;
 	private int qtyWork;
+	private int workedDays;
 	private int progression;
 
 	private Image icon;
@@ -20,7 +21,8 @@ public class Project {
     	this.name = name;
     	this.ue = ue;
     	this.nbPoints = 0;
-    	this.qtyWork = w;
+    	this.qtyWork = w;   // In days
+        this.workedDays = 0;
     	this.progression = 0;
 		try {
 			this.icon = new Image(file);
@@ -64,7 +66,15 @@ public class Project {
 		this.qtyWork = qtyWork;
 	}
 
-	public int getProgression() {
+    public int getWorkedDays() {
+        return workedDays;
+    }
+
+    public void addWorkedDay() {
+        this.workedDays++;
+    }
+
+    public int getProgression() {
 		return progression;
 	}
 

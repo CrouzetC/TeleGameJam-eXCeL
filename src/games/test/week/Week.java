@@ -15,13 +15,17 @@ public class Week {
     ArrayList<Day> days;
 
     public Week() {
-        this.days = new ArrayList<Day>(nb_days);
+        this.days = new ArrayList<Day>();
+        for(int i=0 ; i<nb_days; i++){
+            this.days.add(new Day());
+        }
         this.currentDay = 0;
         this.nextIsAction = true;
     }
 
     public void setActionofDayIndex(int index, ActionEvent action){
-        this.days.get(index).setAction(action);
+        Day day = this.days.get(index);
+        day.setAction(action);
     }
     public void setEventofDayIndex(int index, ActionEvent event){
         this.days.get(index).setEvent(event);

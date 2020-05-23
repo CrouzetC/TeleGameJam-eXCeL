@@ -105,6 +105,9 @@ public class Dialogue implements ActionEvent {
 
         // images de fond
         Image bckground = gameData.getPictures().getDialogue_background();
+        float bgWidth = bckground.getWidth();
+        float scale = bgWidth/width ;
+
         bckground.draw(0, 0, width, height);
 
         // affichage des NPC qui parlent
@@ -146,8 +149,8 @@ public class Dialogue implements ActionEvent {
 
             String text = ((Line)dialoguePiece).getText();
 
-            font.drawString(60, (int)(0.825*height), characterName, org.newdawn.slick.Color.red);
-            font.drawString(40, (int)(0.875*height), text, org.newdawn.slick.Color.red);
+            font.drawString(60, (int)(0.825*height), characterName, org.newdawn.slick.Color.black);
+            font.drawString(40, (int)(0.875*height), text, org.newdawn.slick.Color.black);
 
         }
         if (dialoguePiece instanceof Choices) {
@@ -163,7 +166,7 @@ public class Dialogue implements ActionEvent {
             int nbChoices = ((Choices)dialoguePiece).getNbChoices();
             for (int i = 0; i < nbChoices; i++) {
                 Choice choice = ((Choices)dialoguePiece).getChoice(i);
-                font.drawString(45, (int)(0.875*height) + i*20, choice.getText(), org.newdawn.slick.Color.red);
+                font.drawString(45, (int)(0.875*height) + i*20, choice.getText(), org.newdawn.slick.Color.black);
             }
         }
 
