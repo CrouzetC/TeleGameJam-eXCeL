@@ -1,9 +1,10 @@
 package games.test.data;
 
 public class Player {
-    String name;
+    public static String name;
 
-    int[] statistics;
+    public static int nb_stats = 6;
+    private int[] statistics;
     /* statistics[0] : Stress, Fatigue;
     * statistics[1] : Algo, Théorie;
     * statistics[2] : java, POO;
@@ -12,19 +13,15 @@ public class Player {
     * statistics[5] : Charisme, Social, GdP;
     */
 
-    /*  GETTER ET SETTER */
-    public void setName(String name) {
+    public Player() {
+        this.statistics = new int[nb_stats];
         this.name = name;
-    }
-    public void setStatistics(int[] statistics) {
-        this.statistics = statistics;
-    }
-    public void setStatisticsIndex(int index, int value){
-        if( index < statistics.length ) {
-            this.statistics[index] = value;
-        }
+        for (int i = 0; i < nb_stats; i++)
+            statistics[i] = 30;
     }
 
+    /*  GETTER ET SETTER */
+    public void setName(String name) {this.name = name;}
     public String getName() {
         return name;
     }
@@ -38,4 +35,11 @@ public class Player {
             return 101; // Erreur on renvoit une valeur supérieur à 100
         }
     }
+
+    public void modifyStatistic(int stat_index, int modification){
+        this.statistics[stat_index] += modification;
+        if (statistics[stat_index] <   0) statistics[stat_index] = 0;
+        if (statistics[stat_index] > 100) statistics[stat_index] = 100;
+    }
+
 }

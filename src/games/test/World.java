@@ -53,8 +53,7 @@ public class World extends BasicGameState {
 		for (int i = 0; i < nbWeeks; i++)
 			weeks.add(new Week());
 		currentAction = null;
-		currentAction = Dialogue.getDialogueDemo();
-
+		currentAction = new Dialogue(data, "res/data/dialogue1.txt");
 
 		// start a new week
 		newWeek();
@@ -125,6 +124,8 @@ public class World extends BasicGameState {
 			case 3:
 				actionMenu.update(container, game, delta);
 				break;
+			case 4:
+				break;
 			default:
 				System.out.println("Error in World.update()");
 		}
@@ -146,6 +147,8 @@ public class World extends BasicGameState {
 				break;
 			case 3:
 				actionMenu.render(container, game, context);
+				break;
+			case 4:
 				break;
 			default:
 				System.out.println("Error in World.render()");

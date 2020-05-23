@@ -28,10 +28,6 @@ public class ActionMenu {
         initImages();
     }
 
-    public void setWeek(Week week) {
-        this.week = week;
-    }
-
     public void initImages() {
 
         try {
@@ -47,6 +43,10 @@ public class ActionMenu {
         }catch(Exception e){
             System.out.printf("PROBLEM !");
         }
+    }
+
+    public void setWeek(Week week) {
+        this.week = week;
     }
 
     public void update(GameContainer container, StateBasedGame game, int delta) {
@@ -85,8 +85,6 @@ public class ActionMenu {
             this.select.draw(midW2+i*step2,midH-select.getHeight()*smallScale,smallScale);
 
         }
-
-
     }
 
     public void keyPressed(int key, char c) {

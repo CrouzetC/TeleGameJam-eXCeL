@@ -7,11 +7,13 @@ import java.util.ArrayList;
 
 public class GameData {
 
-    ArrayList<Project> allProjects;
-    ArrayList<ActionEvent> allActions;
-    ArrayList<UE> allUE;
-    Player player;
-    ArrayList<Week> weeks;
+    private ArrayList<Project> allProjects;
+    private ArrayList<ActionEvent> allActions;
+    private ArrayList<UE> allUE;
+    private Player player;
+    private ArrayList<Week> weeks;
+    private NPCs characters;
+    private Pictures pictures;
 
     public GameData(String dataFileName) {
 
@@ -21,8 +23,11 @@ public class GameData {
         allUE.add(new UE("STIC"));
         allUE.add(new UE("SEHS"));
 
-        //  Player
+        //  Player NPCs and pictures
         player = new Player();
+        characters = new NPCs();
+        Loader.loadNPCs(characters);
+        pictures = new Pictures();
 
         // We create the Weeks
         weeks = new ArrayList<Week>();
@@ -35,8 +40,28 @@ public class GameData {
 
         // All possible Actions
         allActions = new ArrayList<ActionEvent>();
-        Loader.loadActions(allActions, dataFileName);
+        Loader.loadActions(allActions, this, dataFileName);
 
     }
+
+    public ArrayList<Project> getAllProjects () {
+        return this.allProjects;
+    }
+    public ArrayList<ActionEvent> getAllActions() {
+        return this.allActions;
+    }
+    public ArrayList<UE> getAllUE() {
+        return this.allUE;
+    }
+    public Player getPlayer() {
+        return this.player;
+    }
+    public ArrayList<Week> getWeeks() {
+        return this.weeks;
+    }
+    public NPCs getCharacters() {
+        return this.characters;
+    }
+    public Pictures getPictures() {return this.pictures;}
 
 }
