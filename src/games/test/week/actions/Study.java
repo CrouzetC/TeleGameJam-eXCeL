@@ -1,11 +1,11 @@
 package games.test.week.actions;
 
-import java.awt.Font;
-
 import org.newdawn.slick.*;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.StateBasedGame;
 
+import app.AppFont;
+import app.AppLoader;
 
 public class Study implements ActionEvent {
 
@@ -15,11 +15,10 @@ public class Study implements ActionEvent {
     Image image;
 
     public Study() {
-        awtFont = new Font("vt323", java.awt.Font.BOLD, 12);
-        font = new TrueTypeFont(awtFont, true);
+        font = AppLoader.loadFont(null, AppFont.BOLD, 12);
         isOver = false;
         try {
-            image = new Image("res/images/dialogue/studying.png");
+            image = new Image("images/dialogue/studying.png");
         } catch (Exception e) {
             e.printStackTrace();
         }

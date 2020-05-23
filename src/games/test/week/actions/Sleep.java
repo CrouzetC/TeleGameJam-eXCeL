@@ -1,11 +1,11 @@
 package games.test.week.actions;
 
-import java.awt.Font;
-
 import org.newdawn.slick.*;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.StateBasedGame;
 
+import app.AppFont;
+import app.AppLoader;
 
 public class Sleep implements ActionEvent {
 
@@ -15,11 +15,10 @@ public class Sleep implements ActionEvent {
     Image image;
 
     public Sleep() {
-        awtFont = new Font("vt323", java.awt.Font.BOLD, 12);
-        font = new TrueTypeFont(awtFont, true);
+        font = AppLoader.loadFont(null, AppFont.BOLD, 12);
         isOver = false;
         try {
-            image = new Image("res/images/dialogue/sleeping.png");
+            image = new Image("images/dialogue/sleeping.png");
         } catch (Exception e) {
             e.printStackTrace();
         }
