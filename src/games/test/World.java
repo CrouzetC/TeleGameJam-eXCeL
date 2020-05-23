@@ -28,7 +28,7 @@ public class World extends BasicGameState {
 	ActionMenu actionMenu;
 
 	// weeks
-	private static int nbWeeks = 3;
+	private static int nbWeeks = 2;
 	private ArrayList<Week> weeks;
 	int currentWeek;
 	ActionEvent currentAction;

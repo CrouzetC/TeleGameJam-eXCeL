@@ -14,7 +14,7 @@ import app.AppLoader;
 public final class Main {
 
 	public static final void main(String[] arguments) throws SlickException {
-		String title = "Sans titre";
+		String title = "eXCeL";
 		int width = 1280;
 		int height = 720;
 		boolean fullscreen = false;

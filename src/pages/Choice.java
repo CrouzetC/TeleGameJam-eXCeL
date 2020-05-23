@@ -22,7 +22,7 @@ public class Choice extends AppMenu {
 		super.initSize(container, game, 600, 400);
 		super.init(container, game);
 		this.setTitle("TeleGame Jam");
-		this.setSubtitle("eXCeL");
+		this.setSubtitle("WAIFU PROJECTS");
 		this.setMenu(Arrays.asList(new MenuItem[] {
 			new MenuItem("Nouvelle partie") {
 				public void itemSelected() {

@@ -121,7 +121,6 @@ public class ActionMenu {
 
             // on a cliqué sur Club
             ActionEvent action = new Clubs();
-            System.out.println(""+current_day);
             week.setActionofDayIndex(current_day,action);
 
             selection_song.play();
