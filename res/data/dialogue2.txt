@@ -1,7 +1,7 @@
 "unknown"
 "*cours dans la forêt à la recherche de quelque chose*"
 "unknown"
-"*supris par le bruit, MC se retourne !*"
+"*surpris par le bruit, MC se retourne !*"
 "MC"
 "Quesse passe-t-il ?"
 "unknown"
