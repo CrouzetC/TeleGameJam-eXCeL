@@ -27,9 +27,10 @@ public class NewGame extends AppMenu {
 
 		this.setTitle("Nouvelle partie");
 		this.setSubtitle("Entrez votre nom :");
+
 		this.tf = new TextField(container,
-				this.contentX, this.subtitleBoxY + this.subtitleBoxHeight + AppPage.gap,
-				this.contentWidth, this.subtitleBoxHeight);
+				this.contentX + (int) (this.subtitleBoxWidth/3.), (int) ((this.subtitleBoxY + this.hintBoxY)/2.),
+				(int) (this.subtitleBoxWidth/3.), this.subtitleBoxHeight);
 		this.tf.setMaxNumberOfLetter(10);
 
 		/*this.setMenu(Arrays.asList(new MenuItem[] {
