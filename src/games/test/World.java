@@ -28,7 +28,7 @@ public class World extends BasicGameState {
 	private int state;
 
 	// game
-	private int gameState; // 1 : ActionMenu ; 2 : action
+	private int gameState; // 1 : ActionMenu ; 2 : action ; 3 : fin de la partie (écran de victoire ou de défaite)
 	private GameData data;
 	ActionMenu actionMenu;
 
@@ -59,8 +59,9 @@ public class World extends BasicGameState {
 		currentAction = null;
 
 		// Player
-		player = new Player();
-		//actionMenu.setWeek(weeks.get(currentWeek));
+		player = data.getPlayer();
+		player.addProject(data.attributeRandomProject()); // attribution d'un projet initial au Player
+		player.addProject(data.attributeRandomProject()); // attribution d'un projet initial au Player
 		player.addProject(data.attributeRandomProject()); // attribution d'un projet initial au Player
 
 		// start a new week
@@ -71,7 +72,7 @@ public class World extends BasicGameState {
 	public void newWeek() {
 		currentWeek += 1;
 		if (currentWeek == nbWeeks) {
-			player.addProject(new Project("Anglais", player.getUE().get(2), 10,5, new double[]{0.1,0.05,0.05,0.3,0.0,0.5}, "images/projets/anglais.png"));
+			// rien
 		}
 		if (currentWeek <= nbWeeks) {
 			// passage à la semaine suivante
@@ -119,7 +120,6 @@ public class World extends BasicGameState {
 			this.pause(container, game);
 		} else if (this.state == 3) {
 			this.stop(container, game);
-			//this.state = 0;
 		}
 	}
 
@@ -149,12 +149,14 @@ public class World extends BasicGameState {
 				}
 				break;
 			case 3:
-				for (int j=0; j<player.getUE().size(); j++) {
-					if (!(player.getUE().get(j).isValidated())) {
+				for (int j=0; j<data.getAllUE().size(); j++) {
+					if (!(data.getAllUE().get(j).isValidated())) {
+						// écran de défaite
 						game.enterState(5, new FadeOutTransition(Color.black, fadeTransitionTime), new FadeInTransition(Color.black, fadeTransitionTime));
 						break;
 					}
 				}
+				// écran de victoire
 				game.enterState(6, new FadeOutTransition(Color.black,Welcome.fadeTransitionTime), new FadeInTransition(Color.black, fadeTransitionTime));
 				break;
 			default:
@@ -192,7 +194,6 @@ public class World extends BasicGameState {
 
 			case 1:
 				actionMenu.keyPressed(key,c);
-	//			checkEndOfAction();
 				break;
 
 			case 2:

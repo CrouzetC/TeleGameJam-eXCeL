@@ -3,6 +3,7 @@ package games.test.week.actions;
 import games.test.data.GameData;
 import games.test.data.Loader;
 import games.test.data.Player;
+import games.test.data.Project;
 import games.test.week.actions.dialogue.Choice;
 import games.test.week.actions.dialogue.Choices;
 import games.test.week.actions.dialogue.DialoguePiece;
@@ -10,6 +11,7 @@ import games.test.week.actions.dialogue.Line;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import app.AppFont;
@@ -226,8 +228,9 @@ public class Dialogue implements ActionEvent {
                 }
                 // avancement du projet
                 int project_advancement = effects[Player.nb_stats];
-                for (int i = 0; i < gameData.getPlayer().getProjects().size(); i++) {
-                    gameData.getPlayer().getProjects().get(i).addProgression(project_advancement);
+                ArrayList<Project> playerProjects = gameData.getPlayer().getProjects();
+                for (int i = 0; i < playerProjects.size(); i++) {
+                    playerProjects.get(i).addProgression(project_advancement);
                 }
 
                 // on insère les prochains éléments de dialogue

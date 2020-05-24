@@ -17,20 +17,16 @@ public class Player {
     * statistics[5] : Charisme, Social, GdP;
     */
 
+    private GameData data;
     private ArrayList<Project> projects;
 
-    private ArrayList<UE> ue;
-
-    public Player() {
+    public Player(GameData data) {
         this.statistics = new int[nb_stats];
         this.name = name;
         for (int i = 0; i < nb_stats; i++)
             statistics[i] = 30;
         this.projects = new ArrayList<Project>();
-        this.ue = new ArrayList<>();
-        this.ue.add(new UE("SFA", 20));
-        this.ue.add(new UE("STIC", 30));
-        this.ue.add(new UE("SEHS", 10));
+        this.data = data;
         // Peut-etre qu'il faut les importer depuis GameData
     }
 
@@ -61,17 +57,16 @@ public class Player {
     }
 
     public void addProject(Project p) {
-        if (ue.contains(p.getUE())) {
+        if (data.getAllUE().contains(p.getUE())) {
             this.projects.add(p);
+        } else {
+            System.out.println("Error in Player.addProject() : unknown UE : " + p.getUE().getName());
         }
     }
 
-    public ArrayList<UE> getUE() {
-        return this.ue;
-    }
-
     public void addPointsToUE(int index, int points) {
-        this.ue.get(index).setNbPoints(points + this.ue.get(index).getNbPoints());
+        UE ue = this.data.getAllUE().get(index);
+        ue.setNbPoints(points + ue.getNbPoints());
     }
 
     public void passProject(Project p) {

@@ -25,8 +25,8 @@ public class GameData {
         allUE.add(new UE("STIC", 30));
         allUE.add(new UE("SEHS", 10));
 
-        //  Player NPCs and pictures
-        player = new Player();
+        //  Player, NPCs and pictures
+        player = new Player(this);
         characters = new NPCs();
         Loader.loadNPCs(characters);
         pictures = new Pictures();
@@ -50,6 +50,10 @@ public class GameData {
     }
 
     public Project attributeRandomProject() {
+        if (remainingProjects.size() == 0) {
+            System.out.println("Error in attributeRandomProject() : no more projects");
+            return null;
+        }
         int rand = ThreadLocalRandom.current().nextInt(0, remainingProjects.size());
         Project p = remainingProjects.remove(rand);
         return p;

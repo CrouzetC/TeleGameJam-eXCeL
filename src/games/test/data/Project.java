@@ -107,7 +107,7 @@ public class Project {
 
 	public void addProgression(int added_progression) {
     	// Mettre a jour le coeur en fonction de la progression
-		this.progression += progression;
+		this.progression += added_progression;
 		if (this.progression >= 100) {
 			this.progression = 100;
 			this.activeHeart = redHeart;

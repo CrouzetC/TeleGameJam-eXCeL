@@ -80,23 +80,9 @@ public class ActionMenu {
             width = container.getWidth();
             height = container.getHeight();
 
-            // Affichage des projets
-            ArrayList<Project> projects = data.getPlayer().getProjects();
-            int nb_projets = projects.size();
-            int icon_width = (int)(0.1*width);
-            int spacing = (int)(0.03*width);
-            int x0 = width / 2 - (nb_projets*(icon_width+spacing) - spacing) / 2;
-            for (int i = 0; i < nb_projets; i++) {
-                projects.get(i).getIcon().draw(x0 + i*(icon_width+spacing), 0, icon_width, icon_width);
-                projects.get(i).getActiveHeart().draw(x0 + i*(icon_width+spacing) + (int)(0.01*width), (int)(1.1*icon_width), spacing, spacing);
-            }
-
-            // Affichage des icones (jours de la semaine, boutons)
-
+            // calculs des coordonnées et distances
             float b = this.background.getWidth();
             this.scale = width/b ;
-            this.background.draw(0,0,this.scale);
-
             smallScale = scale/2;
             int h = (int) height*2/3;
             int step = (int) width/100;
@@ -104,18 +90,39 @@ public class ActionMenu {
             int h2 = (int) (study.getHeight()*smallScale);
             int w = (int) (width - w2*3 - 2*step) /2;
 
+            // arrière-plan
+            this.background.draw(0,0, width, height);
+
+            // Affichage des projets
+            ArrayList<Project> projects = data.getPlayer().getProjects();
+            int nb_projets = projects.size();
+            int icon_width = (int)(0.12*width);
+            int spacing = (int)(0.04*width); // espace entre 2 icônes de projets adjascentes
+            int heart_width = (int)(0.03*width);
+            int first_x_icon = width / 2 - (nb_projets*(icon_width+spacing) - spacing) / 2;
+            for (int i = 0; i < nb_projets; i++) {
+                int x_icon = first_x_icon + i*(icon_width+spacing);
+                int x_heart = x_icon + icon_width / 2 - heart_width / 2;
+                int y_heart = (int)(1.1*icon_width);
+                projects.get(i).getIcon().draw(x_icon, 0, icon_width, icon_width);
+                projects.get(i).getActiveHeart().draw(x_heart, y_heart, heart_width, heart_width);
+            }
+
+            // Affichage des icones (jours de la semaine, boutons)
             this.clubs.draw(w,h,smallScale);
             this.socialize.draw(w+w2+step,h,smallScale);
             this.study.draw(w+2*w2+2*step,h,smallScale);
             this.sleep.draw(w,h+h2+step,smallScale);
             this.dateTime.draw(w+w2+step,h+h2+step,smallScale);
 
+            // affichage des jours de la semaine
             int midW =(int)(width-theWeek.getWidth()*scale)/2;
             int midH =(int)(height-theWeek.getHeight()*scale)/2;
             int step2 = (int) (theWeek.getWidth()*scale)/7;
             int midW2 = (int) (midW + step2/2 - (select.getWidth()*smallScale)/2);
             this.theWeek.draw(midW, midH, scale);
 
+            // affichage de l'indicateur du jour sélectionné
             this.select.draw(midW2+current_day*step2,midH-select.getHeight()*smallScale,smallScale);
 
         }
