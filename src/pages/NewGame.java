@@ -24,12 +24,13 @@ public class NewGame extends AppMenu {
 	public void init(GameContainer container, StateBasedGame game) {
 		super.initSize(container, game, 600, 400);
 		super.init(container, game);
+
 		this.setTitle("Nouvelle partie");
 		this.setSubtitle("Entrez votre nom :");
-
 		this.tf = new TextField(container,
 				this.contentX, this.subtitleBoxY + this.subtitleBoxHeight + AppPage.gap,
 				this.contentWidth, this.subtitleBoxHeight);
+		this.tf.setMaxNumberOfLetter(10);
 
 		/*this.setMenu(Arrays.asList(new MenuItem[] {
 				new MenuItem("Confirmer") {
@@ -48,7 +49,7 @@ public class NewGame extends AppMenu {
 		Input input = container.getInput();
 		if (input.isKeyDown(Input.KEY_ESCAPE)) {
 			game.enterState(1, new FadeOutTransition(Color.black,Welcome.fadeTransitionTime), new FadeInTransition(Color.black,Welcome.fadeTransitionTime));
-		} else if (input.isKeyDown(Input.KEY_ENTER)) {
+		} else if (input.isKeyDown(Input.KEY_ENTER) && !this.tf.getText().matches("^\\s*$")) {
 			Player.name = this.tf.getText();
 			game.enterState(3, new FadeOutTransition(Color.black,Welcome.fadeTransitionTime), new FadeInTransition(Color.black,Welcome.fadeTransitionTime));
 		}
@@ -60,4 +61,9 @@ public class NewGame extends AppMenu {
 		this.tf.render(container, game, context);
 	}
 
+	@Override
+	public void enter(GameContainer container, StateBasedGame game) {
+		super.enter(container, game);
+		this.tf.setText("");
+	}
 }
