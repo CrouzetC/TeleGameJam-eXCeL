@@ -1,9 +1,9 @@
 "MC"
-"kachaw"
+"kachaw\nSaut de ligne"
 "Alicia"
 "Hello"
 "Alicia"
-"World"
+"World\nNouvelle phrase"
 CHOICE
 3,"[phrase A]",10 10 10 10 10 10 50,"[phrase B]",0 0 0 0 0 0 100,"[phrase C]",0 0 0 0 0 0 100
 A

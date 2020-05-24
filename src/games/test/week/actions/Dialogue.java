@@ -162,14 +162,16 @@ public class Dialogue implements ActionEvent {
         if (dialoguePiece instanceof Line) {
             // réplique d'un personnage
             String characterName = ((Line)dialoguePiece).getCharacterName();
-            if (characterName.equals("MC"))
+            if (characterName.equals("MC") && gameData.getPlayer().getName() != "MC")
                 characterName = gameData.getPlayer().getName();
 
-            String text = ((Line)dialoguePiece).getText();
-
-            font.drawString(60, (int)(0.825*height), characterName, org.newdawn.slick.Color.black);
-            font.drawString(40, (int)(0.875*height), text, org.newdawn.slick.Color.black);
-
+            String[] lines = ((Line)dialoguePiece).getText().split("\\\\n");
+            font.drawString(60, (int) (0.825 * height), characterName, org.newdawn.slick.Color.black);
+            for (int j = 0; j < lines.length; j++) {
+                if (lines[j].contains("MC") && gameData.getPlayer().getName() != "MC")
+                    lines[j] = lines[j].replace("MC", gameData.getPlayer().getName());
+                font.drawString(40, (int) (0.875 * height) + font.getHeight() * j, lines[j], org.newdawn.slick.Color.black);
+            }
         }
         if (dialoguePiece instanceof Choices) {
             // réplique du joueur
