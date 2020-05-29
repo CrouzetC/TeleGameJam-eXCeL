@@ -6,6 +6,7 @@ import static java.lang.Math.max;
 
 public class Player {
     public static String name;
+    public static String appro;
 
     public static int nb_stats = 6;
     private int[] statistics;
@@ -23,6 +24,7 @@ public class Player {
     public Player(GameData data) {
         this.statistics = new int[nb_stats];
         this.name = name;
+        this.appro = appro;
         for (int i = 0; i < nb_stats; i++)
             statistics[i] = 30;
         this.projects = new ArrayList<Project>();
@@ -35,6 +37,15 @@ public class Player {
     public String getName() {
         return name;
     }
+
+    public static void setAppro(String appro) {
+        Player.appro = appro;
+    }
+
+    public static String getAppro() {
+        return appro;
+    }
+
     public int[] getStatistics() {
         return statistics;
     }

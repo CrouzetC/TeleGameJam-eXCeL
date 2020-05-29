@@ -17,6 +17,7 @@ public class Button extends TGDComponent{
 	private Color textColor;
 	private Color textColorEntered;
 	private Color textColorPressed;
+	private Color textColorSelected;
 
 	private Font textFont;
 	private int textSize;
@@ -44,6 +45,7 @@ public class Button extends TGDComponent{
 		setTextColor(new Color(255,255,255));
 		setTextColorPressed(new Color(255,255,255));
 		setTextColorEntered(new Color(0,0,0));
+		setTextColorSelected(getTextColorPressed());
 		setTextFont(AppLoader.loadFont("/fonts/vt323.ttf",AppFont.BOLD,textSize));
 
 		setPaddingTop(5);
@@ -62,6 +64,7 @@ public class Button extends TGDComponent{
 
 		setUpperCaseLock(false);
 		setSelectable(false);
+		setSelected(false);
 	}
 
 	//SLICK METHOD
@@ -78,9 +81,17 @@ public class Button extends TGDComponent{
 			return;
 		}
 
-		if(mousePressed)g.setColor(textColorPressed);
-		else if(mouseEntered)g.setColor(textColorEntered);
-		else g.setColor(textColor);
+		if(mousePressed) {
+			g.setColor(textColorPressed);
+		} else if(mouseEntered) {
+			g.setColor(textColorEntered);
+		} else if(selected) {
+			g.setColor(textColorSelected);
+			//setBackgroundColor(backgroundColorSelected);
+		} else if(!selected) {
+			g.setColor(textColor);
+			//setBackgroundColor(backgroundColor);
+		}
 
 		g.setFont(textFont);
 		g.drawString(text, x+paddingLeft+(getWidth()-paddingLeft-paddingRight)/2-textFont.getWidth(text)/2, y+paddingTop+(getHeight()-paddingTop-paddingBottom)/2-textFont.getHeight(text)/2);
@@ -128,14 +139,11 @@ public class Button extends TGDComponent{
 		if (System.currentTimeMillis() - time > 300) {
 			hasFocus = false;
 		}
+		
 		if (contains(x, y) && hasFocus && visible) {
 			if (selectable) {
-				selected = !selected;
-				if (selected) {
-					setBackgroundColor(getBackgroundColorSelected());
-				} else {
-					setBackgroundColor(getBackgroundColorSelected());
-				}
+				selected = true;
+				setBackgroundColor(backgroundColorSelected);
 			}
 		}
 	}
@@ -145,6 +153,8 @@ public class Button extends TGDComponent{
 		super.mouseMoved(ox, oy, x, y);
 		if (contains(x,y) && visible) {
 			hasFocus = true;
+		} else {
+			hasFocus = false;
 		}
 	}
 
@@ -180,6 +190,10 @@ public class Button extends TGDComponent{
 		this.textColorPressed = textColorPressed;
 	}
 
+	public Color getTextColorSelected() { return textColorSelected; }
+
+	public void setTextColorSelected(Color textColorSelected) { this.textColorSelected = textColorSelected; }
+
 	public void setSelectable(boolean selectable) {
 		this.selectable = selectable;
 	}
@@ -190,6 +204,14 @@ public class Button extends TGDComponent{
 
 	public void setBackgroundColorSelected(Color backgroundColorSelected) {
 		this.backgroundColorSelected = backgroundColorSelected;
+	}
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
 	}
 
 }
