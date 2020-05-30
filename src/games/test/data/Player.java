@@ -6,7 +6,7 @@ import static java.lang.Math.max;
 
 public class Player {
     public static String name;
-    public static String appro;
+    public static Appro appro;
 
     public static int nb_stats = 6;
     private int[] statistics;
@@ -39,10 +39,14 @@ public class Player {
     }
 
     public static void setAppro(String appro) {
+        Player.appro = Appro.valueOf(appro);
+    }
+
+    public static void setAppro(Appro appro) {
         Player.appro = appro;
     }
 
-    public static String getAppro() {
+    public static Appro getAppro() {
         return appro;
     }
 

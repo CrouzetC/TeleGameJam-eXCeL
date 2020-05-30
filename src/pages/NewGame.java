@@ -1,6 +1,7 @@
 package pages;
 
 import app.ui.Button;
+import games.test.data.Appro;
 import org.lwjgl.Sys;
 import org.newdawn.slick.Color;
 import games.test.data.Player;
@@ -104,7 +105,7 @@ public class NewGame extends AppMenu {
 			game.enterState(1, new FadeOutTransition(Color.black,Welcome.fadeTransitionTime), new FadeInTransition(Color.black,Welcome.fadeTransitionTime));
 		} else if (input.isKeyDown(Input.KEY_ENTER) && selectedButton != null && !this.tf.getText().matches("^\\s*$")) {
 			Player.name = this.tf.getText();
-			Player.appro = this.selectedButton.getText();
+			Player.appro = Appro.valueOf(this.selectedButton.getText());
 			game.enterState(3, new FadeOutTransition(Color.black,Welcome.fadeTransitionTime), new FadeInTransition(Color.black,Welcome.fadeTransitionTime));
 		}
 	}

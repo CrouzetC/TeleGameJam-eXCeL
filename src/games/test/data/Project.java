@@ -3,9 +3,12 @@ package games.test.data;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+import java.util.ArrayList;
+
 public class Project {
 	
 	private String name;
+	private ArrayList<Appro> appros;
 	private UE ue;
 	private int nbPoints;
 	private int threshold;
@@ -21,6 +24,7 @@ public class Project {
 	
     public Project(String name, UE ue, int t, int w, double[] stats, String file) {
     	this.name = name;
+    	this.appros = new ArrayList<>();
     	this.ue = ue;
         this.threshold = t;
         this.nbPoints = 0;
@@ -48,6 +52,22 @@ public class Project {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public ArrayList<Appro> getAppros() {
+		return appros;
+	}
+
+	public void addAppro(Appro appro) {
+    	if (!appros.contains(appro)) {
+			appros.add(appro);
+		}
+	}
+
+	public void removeAppro(Appro appro) {
+    	if (appros.contains(appro)) {
+    		appros.remove(appro);
+		}
 	}
 
 	public UE getUE() {
