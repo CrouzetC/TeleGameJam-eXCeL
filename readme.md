@@ -3,8 +3,8 @@
 
 ## by the team *eXCeL*
 
-The video game *Waifu Projects* was made during the *TéléGameJam* of the 22/05/2020.
-This event was a Game Jam organized by the club *TéléGame Design* (https://github.com/TeleGD).
+The video game *Waifu Projects* was made during the *TéléGameJam* of the 22/05/2020. <br />
+This event was a Game Jam organized by the club *TéléGame Design* (github.com/TeleGD).
 
 To play the game :
 - go to the section *Releases* of this repository
