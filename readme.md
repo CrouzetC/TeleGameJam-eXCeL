@@ -15,3 +15,6 @@ To play the game :
 
 Warning : you need to have Java 1.8 installed on your computer !
 
+Screenshot of the game :
+
+![](screenshot.png)

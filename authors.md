@@ -1,3 +1,3 @@
-XavierIndice (@XavierIndice)
-Gragalit (@Gragalit)
-CrouzetC (@CrouzetC)
+- XavierIndice (@XavierIndice)
+- Gragalit (@Gragalit)
+- CrouzetC (@CrouzetC)
