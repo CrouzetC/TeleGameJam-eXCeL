@@ -24,7 +24,26 @@ public final class Main {
 			"Non"
 		};
 		JFrame frame = new JFrame();
-		frame.setIconImage(AppLoader.loadIcon("/images/tgj_icon.png").getImage());
+		/*
+		    It is possible that launching the program from an IDE (such as IntelliJ)
+		    will fail and raise the following error :
+		      Exception in thread "main" java.lang.UnsatisfiedLinkError: no lwjgl64 in java.library.path
+
+		    In this case, it is still possible to launch the program from command line, with :
+		      make build run
+		 */
+		try {
+			frame.setIconImage(AppLoader.loadIcon("/images/tgj_icon.png").getImage());
+		} catch (Error e) {
+			System.out.println(
+					  "\nWarning ! It is normal that launching the program fails from an IDE (such as IntelliJ, Eclipse,...).\n"
+					+ "          If you get the following error message :\n"
+					+ "              Exception in thread \"main\" java.lang.UnsatisfiedLinkError: no lwjgl64 in java.library.path\n"
+					+ "          Then you should try to launch the program from a terminal with :\n"
+					+ "              make build run\n");
+			e.printStackTrace();
+			return;
+		}
 		int returnValue = JOptionPane.showOptionDialog(
 			frame,
 			request,
